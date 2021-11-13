@@ -9,6 +9,6 @@ public class SheetDivisi extends SheetCreator {
     }
 
     @Override
-    public void setColumnDimensionTo80() throws IOException {
+    public void setColumnDimensionTo80() {
     }
 }

@@ -45,7 +45,7 @@ public class GoogleAPIClient {
 //    private Drive createDriveService() throws GeneralSecurityException, IOException {
 //        return new GoogleAPIService().createDriveService();
 //    }
-    public ClearValuesResponse clearSheet(String spreadsheetId, String sheetName) throws GeneralSecurityException, IOException {
+    public ClearValuesResponse clearSheet(String spreadsheetId, String sheetName) throws IOException {
 
         String range = sheetName + "!A1:Z1000";
         ClearValuesRequest requestBody = new ClearValuesRequest();
@@ -229,7 +229,7 @@ public class GoogleAPIClient {
                         .execute();
     }
 
-    public BatchUpdateSpreadsheetResponse addSheet(String spreadsheetId, String title) throws GeneralSecurityException, IOException {
+    public BatchUpdateSpreadsheetResponse addSheet(String spreadsheetId, String title) throws IOException {
 
         SheetProperties sheetProperties = new SheetProperties()
 //                .setIndex(index)
@@ -304,38 +304,32 @@ public class GoogleAPIClient {
                 .setParents(Collections.singletonList(parentFolderId))
                 .setMimeType(mimeType);
 
-        File file = this.driveService.files().create(fileMetadata).setFields("id").execute();
-
-        return file;
+        return this.driveService.files().create(fileMetadata).setFields("id").execute();
     }
 
     public String getFileId(String fileName, String folderId) throws IOException {
-        List result = searchFileInFolder(fileName, folderId);
+        List<File> result = searchFileInFolder(fileName, folderId);
         String id = result.get(0).toString();
-        String idParsed = id.substring(7, id.length() - 2);
-        return idParsed;
+        return id.substring(7, id.length() - 2);
     }
 
-    public boolean isSearchSingleton(List searchFileResult) {
-        if (searchFileResult.size() > 1) {
-            return false;
-        }
-        return true;
+    public boolean isSearchSingleton(List<File> searchFileResult) {
+        return searchFileResult.size() <= 1;
     }
-    public List searchFile(String fileName) throws IOException {
+    public List<File> searchFile(String fileName) throws IOException {
         String query = "mimeType!='application/vnd.google-apps.folder' and name='" + fileName + "'";
         return searchItem(fileName, query);
     }
-    public List searchFileInFolder(String fileName, String folderId) throws IOException {
+    public List<File> searchFileInFolder(String fileName, String folderId) throws IOException {
         String query = "mimeType!='application/vnd.google-apps.folder' and name='" + fileName + "' and parents in '" + folderId + "'";
         return searchItem(fileName, query);
     }
-    public List searchFolder(String folderName) throws IOException {
+    public List<File> searchFolder(String folderName) throws IOException {
         String query = "mimeType='application/vnd.google-apps.folder' and name='" + folderName + "'";
         return searchItem(folderName, query);
     }
 
-    public List searchItem(String fileName, String query) throws IOException {
+    public List<File> searchItem(String fileName, String query) throws IOException {
         String pageToken = null;
         FileList result;
         do {
@@ -359,7 +353,7 @@ public class GoogleAPIClient {
         private final List<String> SCOPES = Collections.singletonList(SheetsScopes.DRIVE);
         private final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
-        public GoogleAPIService() throws GeneralSecurityException, IOException {
+        public GoogleAPIService() {
         }
 
         public Sheets createSheetsService() throws IOException, GeneralSecurityException {

@@ -9,11 +9,11 @@ public class SheetCast extends SheetCreator {
         super(spreadSheetId, projectId, 0, "Cast", new TableCast());
     }
 
-    public void setColumnDimensionTo80() throws IOException {
+    public void setColumnDimensionTo80() {
     }
 
     @Override
-    public List<List<Object>> parseList() throws GeneralSecurityException, IOException {
+    public List<List<Object>> parseList() {
         List<List<Object>> newParsedValues = new ArrayList<>();
         newParsedValues.add(getValuesList().get(0));
         for (int i = 1; i < getValuesList().size(); i++) {

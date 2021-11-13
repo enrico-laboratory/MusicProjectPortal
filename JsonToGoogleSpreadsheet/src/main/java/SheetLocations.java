@@ -12,7 +12,7 @@ public class SheetLocations extends SheetCreator {
 
     @Override
     // TODO to rethink.
-    public List<List<Object>> parseList() throws GeneralSecurityException, IOException {
+    public List<List<Object>> parseList() throws IOException {
         List<List<Object>> newParsedValues = new ArrayList<>();
 
         List<List<Object>> valuesSchedule = new TableSchedule().initValuesList();
@@ -31,6 +31,6 @@ public class SheetLocations extends SheetCreator {
         }
         return newParsedValues;
     }
-    public void setColumnDimensionTo80() throws IOException {
+    public void setColumnDimensionTo80() {
     }
 }

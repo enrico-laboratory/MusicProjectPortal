@@ -16,7 +16,7 @@ import java.util.Objects;
 public class TableSchedule extends TableObject<TableSchedule.TableTasksMap> {
 
 
-    public TableSchedule() throws IOException, GeneralSecurityException {
+    public TableSchedule() throws IOException {
         super("Schedule", TableTasksMap.class, 0);
     }
 

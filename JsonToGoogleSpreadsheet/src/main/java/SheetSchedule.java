@@ -9,6 +9,6 @@ public class SheetSchedule extends SheetCreator {
         super(spreadSheetId, projectId,0, "Schedule", new TableSchedule());
     }
 
-    public void setColumnDimensionTo80() throws IOException {
+    public void setColumnDimensionTo80() {
     }
 }

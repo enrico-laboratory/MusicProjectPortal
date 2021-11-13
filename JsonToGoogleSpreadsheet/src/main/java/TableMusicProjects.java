@@ -61,7 +61,7 @@ public class TableMusicProjects extends TableObject<TableMusicProjects.TableMusi
         return tableObjectIsCompleted;
     }
 
-    public boolean setTableObject() throws FileNotFoundException {
+    public boolean setTableObject() {
         Set<Object> list = new HashSet<>();
         for (TableMusicProjectsMap record : getTableObject()) {
             if (!list.add(record.getTitle())) {

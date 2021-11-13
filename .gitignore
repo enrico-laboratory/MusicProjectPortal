@@ -1,0 +1,11 @@
+/.gradle/
+/.idea/
+/gradle/
+/json/
+/gradlew
+/gradlew.bat
+/settings.gradle
+/tokens/
+/src/main/resources/
+/JsonToGoogleSpreadsheet/build/
+/JsonToGoogleSpreadsheet/src/main/resources/

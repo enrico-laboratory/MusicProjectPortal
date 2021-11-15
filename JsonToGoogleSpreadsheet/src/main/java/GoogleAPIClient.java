@@ -45,7 +45,7 @@ public class GoogleAPIClient {
 //    private Drive createDriveService() throws GeneralSecurityException, IOException {
 //        return new GoogleAPIService().createDriveService();
 //    }
-    public ClearValuesResponse clearSheet(String spreadsheetId, String sheetName) throws IOException {
+    public String clearSheet(String spreadsheetId, String sheetName) throws IOException {
 
         String range = sheetName + "!A1:Z1000";
         ClearValuesRequest requestBody = new ClearValuesRequest();
@@ -53,7 +53,7 @@ public class GoogleAPIClient {
                 request = this.sheetsService.spreadsheets().values()
                 .clear(spreadsheetId, range, requestBody);
 
-        return request.execute();
+        return request.execute().getClearedRange();
     }
 
     public Integer updateSheet(String spreadsheetId, String range, List<List<Object>> values)
@@ -229,7 +229,7 @@ public class GoogleAPIClient {
                         .execute();
     }
 
-    public BatchUpdateSpreadsheetResponse addSheet(String spreadsheetId, String title) throws IOException {
+    public List<Response> addSheet(String spreadsheetId, String title) throws IOException {
 
         SheetProperties sheetProperties = new SheetProperties()
 //                .setIndex(index)
@@ -244,13 +244,13 @@ public class GoogleAPIClient {
                         .setRequests(Arrays.asList(request));
 
         BatchUpdateSpreadsheetResponse response = null;
+
         try {
             response = this.sheetsService.spreadsheets().batchUpdate(spreadsheetId, batchUpdateSpreadsheetRequest)
                     .execute();
-        } catch (GoogleJsonResponseException e){
-            System.out.println("Sheet '" + title + "' already exist!" );
-        }
-        return response;
+        } catch (GoogleJsonResponseException ignored){}
+
+        return response.getReplies();
     }
 
 

@@ -59,7 +59,6 @@ public class TableRepertoireDivisi extends TableObject<TableRepertoireDivisi.Tab
             recordList.add(record.v3);
             recordList.add(record.v4);
             recordList.add(record.v5);
-            recordList.add(record.v5);
             recordList.add(record.v6);
             recordList.add(record.v7);
             recordList.add(record.v8);

@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class JsonToGoogleSpreadsheet {
@@ -15,8 +17,12 @@ public class JsonToGoogleSpreadsheet {
                     projectTitle,
                     projectId
             );
+            Calendar calendar = Calendar.getInstance();
+            System.out.println(calendar.getTime());
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
             System.out.println("Updating project \"" + projectTitle + "\"");
-            System.out.println();
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+
             spreadsheet.deleteDefaultSheet();
             spreadsheet.populateSheets();
 

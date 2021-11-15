@@ -35,7 +35,7 @@ public class SpreadsheetCreator {
         return service.getFileId(this.spreadsheetTitle, MAIN_FOLDER_ID);
     }
 
-    public void populateSheets() throws GeneralSecurityException, IOException {
+    public void populateSheets() throws IOException {
         List<SheetCreator> sheetsList = new ArrayList<>();
         sheetsList.add(sheetRepertoire);
         sheetsList.add(sheetSchedule);
@@ -44,17 +44,29 @@ public class SpreadsheetCreator {
         sheetsList.add(sheetLocations);
 
         for (SheetCreator sheet : sheetsList) {
+            System.out.println();
+            System.out.println("Updating sheet: " + sheet.getSheetName().toUpperCase());
             populateSheet(sheet);
         }
     }
 
-    private void populateSheet(SheetCreator sheet) throws IOException, GeneralSecurityException {
-        sheet.createSheet();
-        sheet.clearSheet();
-        sheet.updateSheet();
+    private void populateSheet(SheetCreator sheet) throws IOException {
+        try {
+            System.out.println("Creating sheets: " + sheet.addSheet());
+        } catch (NullPointerException e) {
+            System.out.println("Sheet already exist!");
+        }
+
+        System.out.println("Clearing Sheet: " + sheet.clearSheet());
+
+        System.out.println("Getting updated cells :" + sheet.updateSheet());
+        System.out.println("Making first row bold...");
         sheet.makeFirstRowBold();
+        System.out.println("Sorting sheet...");
         sheet.sortSheet();
+        System.out.println("Setting column dimension to auto...");
         sheet.setColumnDimensionAuto();
+        System.out.println("Setting text wrapping to clip...");
         sheet.setTextWrappingClip();
         sheet.setColumnDimensionTo80();
     }

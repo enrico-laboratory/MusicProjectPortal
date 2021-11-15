@@ -1,3 +1,7 @@
+import com.google.api.services.sheets.v4.model.BatchUpdateSpreadsheetResponse;
+import com.google.api.services.sheets.v4.model.Response;
+
+import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -26,7 +30,7 @@ abstract class SheetCreator {
         this.parsedValuesList = parseList();
     }
 
-    public List<List<Object>> parseList() throws GeneralSecurityException, IOException {
+    public List<List<Object>> parseList() throws IOException {
 
         List<List<Object>> newParsedValues = new ArrayList<>();
         newParsedValues.add(valuesList.get(0));
@@ -41,8 +45,8 @@ abstract class SheetCreator {
         return newParsedValues;
     }
 
-    public void updateSheet() throws IOException {
-        this.service.updateSheet(spreadsheetId,sheetName + "!A1:Z100", parsedValuesList);
+    public Integer updateSheet() throws IOException {
+        return this.service.updateSheet(spreadsheetId,sheetName + "!A1:Z100", parsedValuesList);
     }
 
     public void makeFirstRowBold() throws IOException {
@@ -58,12 +62,12 @@ abstract class SheetCreator {
         this.service.setColumnDimensionAuto(spreadsheetId, sheetName);
     }
 
-    public void clearSheet() throws GeneralSecurityException, IOException {
-        this.service.clearSheet(spreadsheetId, sheetName);
+    public String clearSheet() throws IOException {
+        return this.service.clearSheet(spreadsheetId, sheetName);
     }
 
-    public void createSheet() throws GeneralSecurityException, IOException {
-        service.addSheet(spreadsheetId, sheetName);
+    public List<Response> addSheet() throws IOException {
+        return service.addSheet(spreadsheetId, sheetName);
     }
 
     public void sortSheet() throws IOException {

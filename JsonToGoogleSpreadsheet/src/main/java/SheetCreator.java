@@ -1,7 +1,5 @@
-import com.google.api.services.sheets.v4.model.BatchUpdateSpreadsheetResponse;
 import com.google.api.services.sheets.v4.model.Response;
 
-import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -57,7 +55,6 @@ abstract class SheetCreator {
         this.service.setTextWrappingClip(spreadsheetId, sheetName);
     }
 
-
     public void setColumnDimensionAuto() throws IOException {
         this.service.setColumnDimensionAuto(spreadsheetId, sheetName);
     }
@@ -84,20 +81,12 @@ abstract class SheetCreator {
         return valuesList;
     }
 
-    public List<List<Object>> getParsedValuesList() {
-        return parsedValuesList;
-    }
-
     public String getSheetName() {
         return sheetName;
     }
 
     public GoogleAPIClient getService() {
         return service;
-    }
-
-    public TableObject getTable() {
-        return table;
     }
 
     public String getProjectId() {

@@ -54,7 +54,7 @@ public class SpreadsheetCreator {
         try {
             System.out.println("Creating sheets: " + sheet.addSheet());
         } catch (NullPointerException e) {
-            System.out.println("Sheet already exist!");
+            System.out.println("Sheet already exists!");
         }
 
         System.out.println("Clearing Sheet: " + sheet.clearSheet());

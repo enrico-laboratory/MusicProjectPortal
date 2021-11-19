@@ -1,6 +1,9 @@
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public abstract class TableObject <E> {
@@ -18,6 +21,15 @@ public abstract class TableObject <E> {
         this.inputFile = "json/" + tableName + ".json";
         this.tableObject = initTableObject();
         this.valuesList = initValuesList();
+    }
+
+    String formatDate(String sourceDate) throws ParseException {
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date date = simpleDateFormat.parse(sourceDate);
+        String newPattern = "EEE dd MM yyyy";
+        SimpleDateFormat formatter = new SimpleDateFormat(newPattern);
+        return formatter.format(date);
     }
 
     public abstract List<List<Object>> initValuesList();

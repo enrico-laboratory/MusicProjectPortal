@@ -45,7 +45,8 @@ public class TableSchedule extends TableObject<TableSchedule.TableTasksMap> {
                     List<Object> recordList = new ArrayList<>();
                     recordList.add(record.musicProject);
                     try {
-                        recordList.add(Objects.requireNonNullElse(record.getStart().substring(0, 10),""));  // Date
+                        String date = Objects.requireNonNullElse(record.getStart().substring(0, 10),"");
+                        recordList.add(date);  // Date
 
                     } catch (NullPointerException e) {
                         recordList.add("");

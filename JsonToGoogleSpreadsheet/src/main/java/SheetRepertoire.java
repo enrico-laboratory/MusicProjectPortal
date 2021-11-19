@@ -8,6 +8,12 @@ public class SheetRepertoire extends SheetCreator {
         super(spreadSheetId, projectId, 0, "Repertoire", new TableRepertoire());
     }
 
+
+    @Override
+    public void changeDateFormat() throws IOException {
+
+    }
+
     public void setColumnDimensionTo80() throws IOException {
         GoogleAPIClient service = getService();
         Integer endIndex = 9;

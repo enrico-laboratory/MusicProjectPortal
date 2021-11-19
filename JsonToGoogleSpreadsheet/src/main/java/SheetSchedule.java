@@ -9,6 +9,11 @@ public class SheetSchedule extends SheetCreator {
         super(spreadSheetId, projectId,0, "Schedule", new TableSchedule());
     }
 
+    @Override
+    public void changeDateFormat() throws IOException {
+        getService().changeDateFormat(getSpreadsheetId(),getSheetName());
+    }
+
     public void setColumnDimensionTo80() {
     }
 }

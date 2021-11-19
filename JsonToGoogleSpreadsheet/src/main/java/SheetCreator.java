@@ -2,7 +2,10 @@ import com.google.api.services.sheets.v4.model.Response;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 abstract class SheetCreator {
@@ -43,6 +46,8 @@ abstract class SheetCreator {
         return newParsedValues;
     }
 
+
+
     public Integer updateSheet() throws IOException {
         return this.service.updateSheet(spreadsheetId,sheetName + "!A1:Z100", parsedValuesList);
     }
@@ -70,6 +75,8 @@ abstract class SheetCreator {
     public void sortSheet() throws IOException {
         service.sortRows(spreadsheetId, sheetName, dimensionIndex);
     }
+
+    public abstract void changeDateFormat() throws IOException;
 
     public abstract void setColumnDimensionTo80() throws IOException;
 

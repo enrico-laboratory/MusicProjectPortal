@@ -24,7 +24,6 @@ import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Properties;
 
 public class GoogleAPIClient {
 
@@ -189,6 +188,41 @@ public class GoogleAPIClient {
         BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest =
                 new BatchUpdateSpreadsheetRequest()
                         .setRequests(requests);
+
+        return this.sheetsService.spreadsheets().batchUpdate(
+                        spreadsheetId, batchUpdateSpreadsheetRequest)
+                .execute();
+    }
+
+    public BatchUpdateSpreadsheetResponse changeDateFormat(String spreadsheetId, String sheetTitle) throws IOException {
+
+        Integer sheetId = sheetIdByTitle(spreadsheetId, sheetTitle);
+
+        GridRange gridRange = new GridRange();
+        gridRange
+                .setSheetId(sheetId)
+                .setStartRowIndex(1)
+//                .setEndRowIndex(1004)
+                .setStartColumnIndex(0)
+                .setEndColumnIndex(1);
+
+        List<Request> request = Arrays.asList(
+                new Request().setRepeatCell(
+                        new RepeatCellRequest()
+                                .setRange(gridRange)
+
+                                .setCell(
+                                        new CellData()
+                                                .setUserEnteredFormat(new CellFormat()
+                                                        .setNumberFormat(new NumberFormat()
+                                                                .setType("DATE")
+                                                                .setPattern("ddd dd mmm yyyy")))
+                                )
+                                .setFields("userEnteredFormat.numberFormat")
+                )
+        );
+        BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest = new BatchUpdateSpreadsheetRequest()
+                .setRequests(request);
 
         return this.sheetsService.spreadsheets().batchUpdate(
                         spreadsheetId, batchUpdateSpreadsheetRequest)

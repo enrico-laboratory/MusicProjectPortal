@@ -9,6 +9,11 @@ public class SheetDivisi extends SheetCreator {
     }
 
     @Override
+    public void changeDateFormat() throws IOException {
+
+    }
+
+    @Override
     public void setColumnDimensionTo80() {
     }
 }

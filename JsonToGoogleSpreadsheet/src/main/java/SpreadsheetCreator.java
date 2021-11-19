@@ -66,6 +66,7 @@ public class SpreadsheetCreator {
         sheet.sortSheet();
         System.out.println("Setting column dimension to auto...");
         sheet.setColumnDimensionAuto();
+        sheet.changeDateFormat();
         System.out.println("Setting text wrapping to clip...");
         sheet.setTextWrappingClip();
         sheet.setColumnDimensionTo80();

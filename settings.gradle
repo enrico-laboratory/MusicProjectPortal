@@ -1,3 +1,5 @@
 rootProject.name = 'MusicProjectPortal'
 include 'JsonToGoogleSpreadsheet'
+include 'GoogleAPIClient'
+include 'NotionAPIClient'
 

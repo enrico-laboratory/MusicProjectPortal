@@ -1,3 +1,5 @@
+package com.enricoruggieri.json_to_gspreadsheet;
+
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -9,7 +11,8 @@ public class SheetCast extends SheetCreator {
         super(spreadSheetId, projectId, 0, "Cast", new TableCast());
     }
 
-    public void setColumnDimensionTo80() {
+    public String setColumnDimensionTo80() {
+        return "no changes";
     }
 
     @Override
@@ -30,7 +33,8 @@ public class SheetCast extends SheetCreator {
     }
 
     @Override
-    public void changeDateFormat() throws IOException {
+    public String changeDateFormat() {
+        return "no changes";
 
     }
 }

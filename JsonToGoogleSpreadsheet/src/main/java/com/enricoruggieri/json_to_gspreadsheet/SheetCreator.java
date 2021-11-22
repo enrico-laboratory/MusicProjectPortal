@@ -1,11 +1,10 @@
-import com.google.api.services.sheets.v4.model.Response;
+package com.enricoruggieri.json_to_gspreadsheet;
+
+import com.enricoruggieri.google_api_client.GoogleAPIClient;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 abstract class SheetCreator {
@@ -52,33 +51,33 @@ abstract class SheetCreator {
         return this.service.updateSheet(spreadsheetId,sheetName + "!A1:Z100", parsedValuesList);
     }
 
-    public void makeFirstRowBold() throws IOException {
-        this.service.makeFirstRowBold(spreadsheetId, sheetName);
+    public String makeFirstRowBold() throws IOException {
+        return this.service.makeFirstRowBold(spreadsheetId, sheetName);
     }
 
-    public void setTextWrappingClip() throws IOException {
-        this.service.setTextWrappingClip(spreadsheetId, sheetName);
+    public String setTextWrappingClip() throws IOException {
+        return this.service.setTextWrappingClip(spreadsheetId, sheetName);
     }
 
-    public void setColumnDimensionAuto() throws IOException {
-        this.service.setColumnDimensionAuto(spreadsheetId, sheetName);
+    public String setColumnDimensionAuto() throws IOException {
+        return this.service.setColumnDimensionAuto(spreadsheetId, sheetName);
     }
 
     public String clearSheet() throws IOException {
         return this.service.clearSheet(spreadsheetId, sheetName);
     }
 
-    public List<Response> addSheet() throws IOException {
+    public String addSheet() throws IOException {
         return service.addSheet(spreadsheetId, sheetName);
     }
 
-    public void sortSheet() throws IOException {
-        service.sortRows(spreadsheetId, sheetName, dimensionIndex);
+    public String sortSheet() throws IOException {
+        return service.sortRows(spreadsheetId, sheetName, dimensionIndex);
     }
 
-    public abstract void changeDateFormat() throws IOException;
+    public abstract String changeDateFormat() throws IOException;
 
-    public abstract void setColumnDimensionTo80() throws IOException;
+    public abstract String setColumnDimensionTo80() throws IOException;
 
     public String getSpreadsheetId() {
         return spreadsheetId;

@@ -1,3 +1,5 @@
+package com.enricoruggieri.google_api_client;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -30,20 +32,9 @@ public class GoogleAPIClient {
     private final Drive driveService = new GoogleAPIService().createDriveService();
     private final Sheets sheetsService = new GoogleAPIService().createSheetsService();
 
-    public Drive getDriveService() {
-        return driveService;
-    }
-
-    public Sheets getSheetsService() {
-        return sheetsService;
-    }
-
     public GoogleAPIClient() throws GeneralSecurityException, IOException {
     }
 
-//    private Drive createDriveService() throws GeneralSecurityException, IOException {
-//        return new GoogleAPIService().createDriveService();
-//    }
     public String clearSheet(String spreadsheetId, String sheetName) throws IOException {
 
         String range = sheetName + "!A1:Z1000";
@@ -67,40 +58,31 @@ public class GoogleAPIClient {
 
     }
 
-    public BatchUpdateSpreadsheetResponse sortRows(String spreadsheetId, String sheetTitle, int dimensionIndex) throws IOException {
-        SortSpec sortSpec = new SortSpec();
-        sortSpec.setSortOrder("ASCENDING")
-                .setDimensionIndex(dimensionIndex);
+    public String sortRows(String spreadsheetId, String sheetTitle, int dimensionIndex) throws IOException {
 
         Integer sheetId = sheetIdByTitle(spreadsheetId, sheetTitle);
+        GridRange gridRange = setGridRange(sheetId, 1, 1004, 0, 25);
 
-        GridRange gridRange = new GridRange();
-        gridRange
-                .setSheetId(sheetId)
-                .setStartRowIndex(1)
-                .setEndRowIndex(1004)
-                .setStartColumnIndex(0)
-                .setEndColumnIndex(25);
-
-        SortRangeRequest sortRangeRequest = new SortRangeRequest()
-                .setRange(gridRange)
-                .setSortSpecs(Arrays.asList(sortSpec));
-
-        Request request = new Request()
-                .setSortRange(sortRangeRequest);
+        List<Request> request = List.of(new Request()
+                .setSortRange(new SortRangeRequest()
+                        .setRange(gridRange)
+                        .setSortSpecs(List.of(new SortSpec()
+                                .setSortOrder("ASCENDING")
+                                .setDimensionIndex(dimensionIndex)))));
 
         BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest =
                 new BatchUpdateSpreadsheetRequest()
-                        .setRequests(Arrays.asList(request));
+                        .setRequests(request);
 
         return this.sheetsService.spreadsheets()
                 .batchUpdate(spreadsheetId, batchUpdateSpreadsheetRequest)
-                .execute();
+                .execute().getReplies().toString();
 
     }
 
     public Integer sheetIdByTitle(String spreadsheetId, String sheetName) throws IOException {
         Spreadsheet sheetObject = sheetsService.spreadsheets().get(spreadsheetId).execute();
+
         for (Sheet sheet : sheetObject.getSheets()) {
             if (sheet.getProperties().getTitle().equals(sheetName)) {
                 return sheet.getProperties().getSheetId();
@@ -109,7 +91,7 @@ public class GoogleAPIClient {
         return -1;
     }
 
-    public BatchUpdateSpreadsheetResponse setColumnDimensionAuto(String spreadsheetId, String sheetName) throws IOException {
+    public String setColumnDimensionAuto(String spreadsheetId, String sheetName) throws IOException {
 
         Integer sheetId = sheetIdByTitle(spreadsheetId,sheetName);
 
@@ -120,21 +102,21 @@ public class GoogleAPIClient {
                 .setStartIndex(0)
                 .setEndIndex(25);
 
-        List<Request> requests = Arrays.asList(
+        List<Request> requests = List.of(
                 new Request()
                         .setAutoResizeDimensions(new AutoResizeDimensionsRequest()
                                 .setDimensions(dimensionRange)
-                                )
-                        );
+                        )
+        );
         BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest =
                 new BatchUpdateSpreadsheetRequest()
                         .setRequests(requests);
 
         return this.sheetsService.spreadsheets().batchUpdate(
                         spreadsheetId, batchUpdateSpreadsheetRequest)
-                .execute();
+                .execute().getReplies().toString();
     }
-    public BatchUpdateSpreadsheetResponse setColumnDimensionTo80(String spreadsheetId, String sheetName, Integer startIndex, Integer endIndex) throws IOException {
+    public String setColumnDimensionTo80(String spreadsheetId, String sheetName, Integer startIndex, Integer endIndex) throws IOException {
 
         Integer sheetId = sheetIdByTitle(spreadsheetId,sheetName);
 
@@ -145,7 +127,7 @@ public class GoogleAPIClient {
                 .setStartIndex(startIndex)
                 .setEndIndex(endIndex);
 
-        List<Request> requests = Arrays.asList(
+        List<Request> requests = List.of(
                 new Request()
                         .setUpdateDimensionProperties(
                                 new UpdateDimensionPropertiesRequest()
@@ -158,23 +140,16 @@ public class GoogleAPIClient {
                 new BatchUpdateSpreadsheetRequest()
                         .setRequests(requests);
 
-        return this.sheetsService.spreadsheets().batchUpdate(
-                        spreadsheetId, batchUpdateSpreadsheetRequest)
-                .execute();
+        return this.sheetsService.spreadsheets()
+                .batchUpdate(spreadsheetId, batchUpdateSpreadsheetRequest)
+                .execute().getReplies().toString();
     }
-    public BatchUpdateSpreadsheetResponse setTextWrappingClip(String spreadsheetId, String sheetName) throws IOException {
+    public String setTextWrappingClip(String spreadsheetId, String sheetName) throws IOException {
 
         Integer sheetId = sheetIdByTitle(spreadsheetId,sheetName);
+        GridRange gridRange = setGridRangeOnlyColumn(sheetId, 6,9);
 
-        GridRange gridRange = new GridRange();
-        gridRange
-                .setSheetId(sheetId)
-//                .setStartRowIndex(0)
-//                .setEndRowIndex(1);
-                .setStartColumnIndex(6)
-                .setEndColumnIndex(9);
-
-        List<Request> requests = Arrays.asList(
+        List<Request> requests = List.of(
                 new Request().setRepeatCell(new RepeatCellRequest()
                         .setRange(gridRange)
                         .setCell(new CellData()
@@ -189,28 +164,20 @@ public class GoogleAPIClient {
                 new BatchUpdateSpreadsheetRequest()
                         .setRequests(requests);
 
-        return this.sheetsService.spreadsheets().batchUpdate(
-                        spreadsheetId, batchUpdateSpreadsheetRequest)
-                .execute();
+        return this.sheetsService.spreadsheets()
+                .batchUpdate(spreadsheetId, batchUpdateSpreadsheetRequest)
+                .execute().getReplies().toString();
     }
 
-    public BatchUpdateSpreadsheetResponse changeDateFormat(String spreadsheetId, String sheetTitle) throws IOException {
+    public String changeDateFormat(String spreadsheetId, String sheetTitle) throws IOException {
 
         Integer sheetId = sheetIdByTitle(spreadsheetId, sheetTitle);
+        GridRange gridRange = setGridRangeOnlyColumn(sheetId,0,1);
 
-        GridRange gridRange = new GridRange();
-        gridRange
-                .setSheetId(sheetId)
-                .setStartRowIndex(1)
-//                .setEndRowIndex(1004)
-                .setStartColumnIndex(0)
-                .setEndColumnIndex(1);
-
-        List<Request> request = Arrays.asList(
+        List<Request> request = List.of(
                 new Request().setRepeatCell(
                         new RepeatCellRequest()
                                 .setRange(gridRange)
-
                                 .setCell(
                                         new CellData()
                                                 .setUserEnteredFormat(new CellFormat()
@@ -224,24 +191,18 @@ public class GoogleAPIClient {
         BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest = new BatchUpdateSpreadsheetRequest()
                 .setRequests(request);
 
-        return this.sheetsService.spreadsheets().batchUpdate(
-                        spreadsheetId, batchUpdateSpreadsheetRequest)
-                .execute();
+        return this.sheetsService.spreadsheets()
+                .batchUpdate(spreadsheetId, batchUpdateSpreadsheetRequest)
+                .execute().getReplies().toString();
     }
 
-    public BatchUpdateSpreadsheetResponse makeFirstRowBold(String spreadsheetId, String sheetName) throws IOException {
+    public String makeFirstRowBold(String spreadsheetId, String sheetName) throws IOException {
 
         Integer sheetId = sheetIdByTitle(spreadsheetId,sheetName);
 
-        GridRange gridRange = new GridRange();
-        gridRange
-                .setSheetId(sheetId)
-                .setStartRowIndex(0)
-                .setEndRowIndex(1);
-//                .setStartColumnIndex(0)
-//                .setEndColumnIndex(25);
+        GridRange gridRange = setGridRangeOnlyRow(sheetId, 0,1);
 
-        List<Request> requests = Arrays.asList(
+        List<Request> requests = List.of(
                 new Request().setRepeatCell(new RepeatCellRequest()
                         .setRange(gridRange)
                         .setCell(new CellData()
@@ -254,28 +215,46 @@ public class GoogleAPIClient {
                         .setFields("userEnteredFormat.textFormat.bold")
                 )
         );
-                BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest =
-                        new BatchUpdateSpreadsheetRequest()
-                                .setRequests(requests);
+        BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest =
+                new BatchUpdateSpreadsheetRequest()
+                        .setRequests(requests);
 
-                return this.sheetsService.spreadsheets().batchUpdate(
-                        spreadsheetId, batchUpdateSpreadsheetRequest)
-                        .execute();
+        return this.sheetsService.spreadsheets().batchUpdate(
+                spreadsheetId, batchUpdateSpreadsheetRequest)
+                .execute().getReplies().toString();
     }
 
-    public List<Response> addSheet(String spreadsheetId, String title) throws IOException {
+    private GridRange setGridRangeOnlyColumn(Integer sheetId, Integer startColumnIndex, Integer endColumnIndex){
+        return setGridRange(sheetId, null, null, startColumnIndex, endColumnIndex);
 
-        SheetProperties sheetProperties = new SheetProperties()
-//                .setIndex(index)
-                .setTitle(title);
-        AddSheetRequest addSheetRequest = new AddSheetRequest().setProperties(sheetProperties);
+    }
 
-        Request request = new Request()
-                .setAddSheet(addSheetRequest);
+    private GridRange setGridRangeOnlyRow(Integer sheetId, Integer startRowIndex, Integer endRowIndex){
+        return setGridRange(sheetId,startRowIndex,endRowIndex, null, null);
+
+    }
+
+    private GridRange setGridRange(Integer sheetId, Integer startRowIndex, Integer endRowIndex, Integer startColumnIndex, Integer endColumnIndex) {
+        return new GridRange()
+                .setSheetId(sheetId)
+                .setStartRowIndex(startRowIndex)
+                .setEndRowIndex(endRowIndex)
+                .setStartColumnIndex(startColumnIndex)
+                .setEndColumnIndex(endColumnIndex);
+
+    }
+
+    public String addSheet(String spreadsheetId, String title) throws IOException {
+
+        List<Request> request = List.of(
+                new Request()
+                        .setAddSheet(new AddSheetRequest()
+                                .setProperties(new SheetProperties()
+                                        .setTitle(title))));
 
         BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest =
                 new BatchUpdateSpreadsheetRequest()
-                        .setRequests(Arrays.asList(request));
+                        .setRequests(request);
 
         BatchUpdateSpreadsheetResponse response = null;
 
@@ -284,23 +263,23 @@ public class GoogleAPIClient {
                     .execute();
         } catch (GoogleJsonResponseException ignored){}
 
-        return response.getReplies();
+        return response.getReplies().toString();
     }
 
 
     public BatchUpdateSpreadsheetResponse deleteSheet(String spreadSheetId, String sheetName) throws IOException {
+        BatchUpdateSpreadsheetResponse response = null;
+
         Integer sheetId = sheetIdByTitle(spreadSheetId, sheetName);
 
-        List<Request> request = Arrays.asList(
+        List<Request> request = List.of(
                 new Request()
                         .setDeleteSheet(new DeleteSheetRequest()
-                        .setSheetId(sheetId)));
+                                .setSheetId(sheetId)));
 
         BatchUpdateSpreadsheetRequest batchUpdateSpreadsheetRequest =
                 new BatchUpdateSpreadsheetRequest()
                         .setRequests(request);
-
-        BatchUpdateSpreadsheetResponse response = null;
 
         try{
             response = this.sheetsService
@@ -312,21 +291,21 @@ public class GoogleAPIClient {
     }
 
 
-    public File createFolder(String name) throws IOException {
+    public String createFolder(String name) throws IOException {
         return createFolder(name, "null");
     }
-    public File createFolder(String name, String parentFolderId) throws IOException {
+    public String createFolder(String name, String parentFolderId) throws IOException {
         return createItem(name,parentFolderId, "application/vnd.google-apps.folder" );
     }
 
-    public File createSpreadSheet(String name) throws IOException {
+    public String createSpreadSheet(String name) throws IOException {
         return createItem(name,"null", "application/vnd.google-apps.spreadsheet");
     }
-    public File createSpreadSheet(String name, String parentFolderId) throws IOException {
+    public String createSpreadSheet(String name, String parentFolderId) throws IOException {
         return createItem(name,parentFolderId, "application/vnd.google-apps.spreadsheet");
     }
 
-    private File createItem(String name, String parentFolderId, String mimeType) throws IOException {
+    private String createItem(String name, String parentFolderId, String mimeType) throws IOException {
         File fileMetadata = new File();
 
         if (parentFolderId.equals("null")) {
@@ -338,7 +317,7 @@ public class GoogleAPIClient {
                 .setParents(Collections.singletonList(parentFolderId))
                 .setMimeType(mimeType);
 
-        return this.driveService.files().create(fileMetadata).setFields("id").execute();
+        return this.driveService.files().create(fileMetadata).setFields("id").execute().getId();
     }
 
     public String getFileId(String fileName, String folderId) throws IOException {
@@ -350,6 +329,7 @@ public class GoogleAPIClient {
     public boolean isSearchSingleton(List<File> searchFileResult) {
         return searchFileResult.size() <= 1;
     }
+
     public List<File> searchFile(String fileName) throws IOException {
         String query = "mimeType!='application/vnd.google-apps.folder' and name='" + fileName + "'";
         return searchItem(fileName, query);
@@ -368,7 +348,6 @@ public class GoogleAPIClient {
         FileList result;
         do {
             result = driveService.files().list()
-//                    .setQ("name='" + fileName + "'")
                     .setQ(query)
                     .setSpaces("drive")
                     .setFields("nextPageToken, files(id)")
@@ -380,15 +359,12 @@ public class GoogleAPIClient {
         return result.getFiles();
     }
 
-    private class GoogleAPIService {
+    private static class GoogleAPIService {
         private final String APPLICATION_NAME = "Music Projects Portal";
         private final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
         private final String TOKENS_DIRECTORY_PATH = "tokens";
         private final List<String> SCOPES = Collections.singletonList(SheetsScopes.DRIVE);
         private final String CREDENTIALS_FILE_PATH = "/credentials.json";
-
-        public GoogleAPIService() {
-        }
 
         public Sheets createSheetsService() throws IOException, GeneralSecurityException {
             final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
@@ -422,8 +398,6 @@ public class GoogleAPIClient {
             return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
         }
     }
-
-
 }
 
 

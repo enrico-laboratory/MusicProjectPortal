@@ -1,6 +1,7 @@
+package com.enricoruggieri.json_to_gspreadsheet;
+
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.List;
 
 public class SheetDivisi extends SheetCreator {
 
@@ -9,11 +10,12 @@ public class SheetDivisi extends SheetCreator {
     }
 
     @Override
-    public void changeDateFormat() throws IOException {
-
+    public String changeDateFormat() {
+        return "no changes";
     }
 
     @Override
-    public void setColumnDimensionTo80() {
+    public String setColumnDimensionTo80() {
+        return "no changes";
     }
 }

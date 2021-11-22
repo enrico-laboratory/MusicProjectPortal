@@ -1,3 +1,5 @@
+package com.enricoruggieri.json_to_gspreadsheet;
+
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
 import java.text.ParseException;

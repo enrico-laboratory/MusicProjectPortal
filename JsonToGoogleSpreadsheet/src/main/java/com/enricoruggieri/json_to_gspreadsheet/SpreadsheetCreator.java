@@ -1,3 +1,7 @@
+package com.enricoruggieri.json_to_gspreadsheet;
+
+import com.enricoruggieri.google_api_client.GoogleAPIClient;
+
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -30,7 +34,7 @@ public class SpreadsheetCreator {
     private String setSpreadSheetId() throws IOException {
         String MAIN_FOLDER_ID = "1ggP6aU93RJT1HzgigtzIA6YLeMWAJtKD";
         if (service.searchFileInFolder(this.spreadsheetTitle, MAIN_FOLDER_ID).isEmpty()) {
-            return service.createSpreadSheet(this.spreadsheetTitle, MAIN_FOLDER_ID).getId();
+            return service.createSpreadSheet(this.spreadsheetTitle, MAIN_FOLDER_ID);
         }
         return service.getFileId(this.spreadsheetTitle, MAIN_FOLDER_ID);
     }
@@ -61,14 +65,15 @@ public class SpreadsheetCreator {
 
         System.out.println("Getting updated cells :" + sheet.updateSheet());
         System.out.println("Making first row bold...");
-        sheet.makeFirstRowBold();
+        System.out.println(sheet.makeFirstRowBold());
         System.out.println("Sorting sheet...");
-        sheet.sortSheet();
+        System.out.println(sheet.sortSheet());
         System.out.println("Setting column dimension to auto...");
-        sheet.setColumnDimensionAuto();
-        sheet.changeDateFormat();
+        System.out.println(sheet.setColumnDimensionAuto());
+        System.out.println("Changing date format...");
+        System.out.println(sheet.changeDateFormat());
         System.out.println("Setting text wrapping to clip...");
-        sheet.setTextWrappingClip();
+        System.out.println(sheet.setTextWrappingClip());
         sheet.setColumnDimensionTo80();
     }
 

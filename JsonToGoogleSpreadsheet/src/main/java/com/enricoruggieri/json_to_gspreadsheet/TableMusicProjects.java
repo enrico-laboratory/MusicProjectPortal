@@ -1,3 +1,5 @@
+package com.enricoruggieri.json_to_gspreadsheet;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;

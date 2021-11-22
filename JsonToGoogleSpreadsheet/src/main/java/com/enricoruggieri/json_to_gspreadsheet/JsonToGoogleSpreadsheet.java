@@ -1,7 +1,8 @@
+package com.enricoruggieri.json_to_gspreadsheet;
+
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class JsonToGoogleSpreadsheet {

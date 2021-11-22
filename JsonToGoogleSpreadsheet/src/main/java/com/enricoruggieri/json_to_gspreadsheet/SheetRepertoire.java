@@ -1,6 +1,9 @@
+package com.enricoruggieri.json_to_gspreadsheet;
+
+import com.enricoruggieri.google_api_client.GoogleAPIClient;
+
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.List;
 
 public class SheetRepertoire extends SheetCreator {
 
@@ -10,15 +13,15 @@ public class SheetRepertoire extends SheetCreator {
 
 
     @Override
-    public void changeDateFormat() throws IOException {
-
+    public String changeDateFormat() {
+        return "no changes";
     }
 
-    public void setColumnDimensionTo80() throws IOException {
+    public String setColumnDimensionTo80() throws IOException {
         GoogleAPIClient service = getService();
         Integer endIndex = 9;
         Integer startIndex = 6;
-        service.setColumnDimensionTo80(getSpreadsheetId(), getSheetName(), startIndex, endIndex);
+        return service.setColumnDimensionTo80(getSpreadsheetId(), getSheetName(), startIndex, endIndex);
     }
 
 }

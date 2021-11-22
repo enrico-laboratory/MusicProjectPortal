@@ -3,6 +3,6 @@
 /gradle/
 /json/
 /tokens/
-/src/main/resources/
-/JsonToGoogleSpreadsheet/build/
-/JsonToGoogleSpreadsheet/src/main/resources/
+build/
+resources/
+/NotionAPIClient/

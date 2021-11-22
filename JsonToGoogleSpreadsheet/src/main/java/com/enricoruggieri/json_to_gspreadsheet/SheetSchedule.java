@@ -1,6 +1,7 @@
+package com.enricoruggieri.json_to_gspreadsheet;
+
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.List;
 
 public class SheetSchedule extends SheetCreator {
 
@@ -10,10 +11,11 @@ public class SheetSchedule extends SheetCreator {
     }
 
     @Override
-    public void changeDateFormat() throws IOException {
-        getService().changeDateFormat(getSpreadsheetId(),getSheetName());
+    public String changeDateFormat() throws IOException {
+        return getService().changeDateFormat(getSpreadsheetId(),getSheetName());
     }
 
-    public void setColumnDimensionTo80() {
+    public String setColumnDimensionTo80() {
+        return "no changes";
     }
 }

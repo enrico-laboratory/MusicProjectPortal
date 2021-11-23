@@ -25,15 +25,6 @@ public abstract class TableObject <E> {
         this.valuesList = initValuesList();
     }
 
-    String formatDate(String sourceDate) throws ParseException {
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        Date date = simpleDateFormat.parse(sourceDate);
-        String newPattern = "EEE dd MM yyyy";
-        SimpleDateFormat formatter = new SimpleDateFormat(newPattern);
-        return formatter.format(date);
-    }
-
     public abstract List<List<Object>> initValuesList();
 
     protected abstract List<E> initTableObject() throws FileNotFoundException;

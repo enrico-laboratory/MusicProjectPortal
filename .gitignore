@@ -5,5 +5,4 @@
 /tokens/
 build/
 resources/
-/NotionAPIClient/
-
+/com.enricoruggieri.notion_database_parser.RecordParser/

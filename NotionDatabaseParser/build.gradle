@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'com.enricoruggieri'
+version '1.0-SNAPSHOT'
+ext.notionSdkVersion = "0.1.19"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation("com.github.seratch:notion-sdk-jvm-core:${notionSdkVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}

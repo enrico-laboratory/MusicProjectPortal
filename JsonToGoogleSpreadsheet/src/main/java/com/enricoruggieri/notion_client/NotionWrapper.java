@@ -9,13 +9,13 @@ import notion.api.v1.request.databases.QueryDatabaseRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecordParser {
+public class NotionWrapper {
 
     private final NotionClient client;
     private final String databaseId;
     private final List<Page> databasePages;
 
-    public RecordParser(NotionClient client, String databaseId) {
+    public NotionWrapper(NotionClient client, String databaseId) {
         this.client = client;
         this.databaseId = databaseId;
         databasePages = client.queryDatabase(new QueryDatabaseRequest(databaseId)).getResults();
@@ -29,13 +29,17 @@ public class RecordParser {
         }
     }
 
-    public String getTitleValueRollup(Page page, String field) {
+    public List<String> getTitleValueRollup(Page page, String field) {
         if (getRollup(page, field) == null) {
-            return "";
+            return new ArrayList<>();
         } else if (getRollup(page, field).isEmpty()) {
-            return "";
+            return new ArrayList<>();
         } else {
-            return getRollup(page, field).get(0).getTitle().get(0).getPlainText();
+            List<String> list = new ArrayList<>();
+            List<PageProperty.RichText> titlesList = getRollup(page, field).get(0).getTitle();
+            titlesList.forEach(title ->
+                    list.add(title.getPlainText()));
+            return list;
         }
     }
 
@@ -49,47 +53,63 @@ public class RecordParser {
         }
     }
 
-    public String getRichTextRollup(Page page, String field) {
+    public List<String> getRichTextRollup(Page page, String field) {
         if (getRollup(page, field) == null) {
-            return "";
+            return new ArrayList<>();
         } else if (getRollup(page, field).isEmpty() || getRollup(page, field).get(0).getRichText().isEmpty() ) {
-            return "";
+            return new ArrayList<>();
         } else {
-            return getRollup(page, field).get(0).getRichText().get(0).getPlainText();
+            List<String> list = new ArrayList<>();
+            List<PageProperty> richTexts = getRollup(page, field);
+            richTexts.forEach(richText ->
+                    list.add(richText.getRichText().get(0).getPlainText()));
+            return list;
         }
     }
 
-    public Number getNumberRollup(Page page, String field) {
+    public List<Number> getNumberRollup(Page page, String field) {
         if (getRollup(page, field) == null) {
-            return null;
+            return new ArrayList<>();
         } else if (getRollup(page, field).isEmpty() ) {
-            return null;
+            return new ArrayList<>();
         } else {
-            return getRollup(page, field).get(0).getNumber();
+            List<Number> list = new ArrayList<>();
+            List<PageProperty> numbers = getRollup(page, field);
+            numbers.forEach(number ->
+                    list.add(number.getNumber()));
+            return list;
         }
     }
 
-    public String getLinkRollup(Page page, String field) {
+    public List<String> getLinkRollup(Page page, String field) {
         if (getRollup(page, field) == null) {
-            return "";
+            return new ArrayList<>();
         } else if (getRollup(page, field).isEmpty() ) {
-            return "";
+            return new ArrayList<>();
         } else {
-            return getRollup(page, field).get(0).getUrl();
+            List<String> list = new ArrayList<>();
+            List<PageProperty> links = getRollup(page, field);
+            links.forEach(link ->
+                    list.add(link.getUrl()));
+            return list;
         }
     }
 
-    public String getSelectRollup(Page page, String field) {
+    public List<String> getSelectRollup(Page page, String field) {
         if (getRollup(page, field) == null) {
-            return "";
+            return new ArrayList<>();
         } else if (getRollup(page, field).isEmpty()) {
-            return "";
+            return new ArrayList<>();
         } else if (getRollup(page, field).get(0).getSelect() == null) {
-            return  "";
+            return new ArrayList<>();
         } else if (getRollup(page, field).get(0).getSelect().getName() == null) {
-            return "";
+            return new ArrayList<>();
         } else {
-            return getRollup(page, field).get(0).getSelect().getName();
+            List<String> list = new ArrayList<>();
+            List<PageProperty> selects = getRollup(page, field);
+            selects.forEach(select ->
+                    list.add(select.getSelect().getName()));
+            return list;
         }
     }
 
@@ -128,6 +148,10 @@ public class RecordParser {
         return multiSelectNames;
     }
 
+    public String getId(Page page, String musicProjectTableId) {
+        return page.getId();
+    }
+
     public List<String> getRelationsValue(Page page, String field) {
 
         List<PageProperty.PageReference> relations = getField(page, field).getRelation();
@@ -162,4 +186,6 @@ public class RecordParser {
     public List<Page> getDatabasePages() {
         return databasePages;
     }
-    }
+
+
+}

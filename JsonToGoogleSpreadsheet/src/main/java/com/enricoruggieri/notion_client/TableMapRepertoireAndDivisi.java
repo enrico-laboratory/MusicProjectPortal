@@ -2,20 +2,20 @@ package com.enricoruggieri.notion_client;
 
 import java.util.List;
 
-public class RecordFieldsRepertoire extends RecordFields {
+public class TableMapRepertoireAndDivisi extends TableMapObject {
 
     public final String order;
     public final List<String> music;
-    public final String musicRollup;
-    public final String composerRollup;
-    public final Number lengthRollup;
-    public final String voices;
-    public final String solo;
+    public final List<String> musicRollup;
+    public final List<String> composerRollup;
+    public final List<Number> lengthRollup;
+    public final List<String> voicesRollup;
+    public final List<String> soloRollup;
     public final List<String> instrumentRollup;
     public final String note;
-    public final String scoreRollup;
-    public final String mediaRollup;
-    public final String recordingRollup;
+    public final List<String> scoreRollup;
+    public final List<String> mediaRollup;
+    public final List<String> recordingRollup;
     public final List<String> musicProject;
     public final Number length;
     public final Boolean selected;
@@ -32,41 +32,41 @@ public class RecordFieldsRepertoire extends RecordFields {
     public final String divisi11;
     public final String divisi12;
 
-    public RecordFieldsRepertoire(String order,
-                                  List<String> music,
-                                  String musicRollup,
-                                  String composerRollup,
-                                  Number lengthRollup,
-                                  String voices,
-                                  String solo,
-                                  List<String> instrumentRollup,
-                                  String note,
-                                  String scoreRollup,
-                                  String mediaRollup,
-                                  String recordingRollup,
-                                  List<String> musicProject,
-                                  Number length,
-                                  Boolean selected,
-                                  String divisi1,
-                                  String divisi2,
-                                  String divisi3,
-                                  String divisi4,
-                                  String divisi5,
-                                  String divisi6,
-                                  String divisi7,
-                                  String divisi8,
-                                  String divisi9,
-                                  String divisi10,
-                                  String divisi11,
-                                  String divisi12)
+    public TableMapRepertoireAndDivisi(String order,
+                                       List<String> music,
+                                       List<String> musicRollup,
+                                       List<String> composerRollup,
+                                       List<Number> lengthRollup,
+                                       List<String> voicesRollup,
+                                       List<String> soloRollup,
+                                       List<String> instrumentRollup,
+                                       String note,
+                                       List<String> scoreRollup,
+                                       List<String> mediaRollup,
+                                       List<String> recordingRollup,
+                                       List<String> musicProject,
+                                       Number length,
+                                       Boolean selected,
+                                       String divisi1,
+                                       String divisi2,
+                                       String divisi3,
+                                       String divisi4,
+                                       String divisi5,
+                                       String divisi6,
+                                       String divisi7,
+                                       String divisi8,
+                                       String divisi9,
+                                       String divisi10,
+                                       String divisi11,
+                                       String divisi12)
     {
         this.order = order;
         this.music = music;
         this.musicRollup = musicRollup;
         this.composerRollup = composerRollup;
         this.lengthRollup = lengthRollup;
-        this.voices = voices;
-        this.solo = solo;
+        this.voicesRollup = voicesRollup;
+        this.soloRollup = soloRollup;
         this.instrumentRollup = instrumentRollup;
         this.note = note;
         this.scoreRollup = scoreRollup;
@@ -97,24 +97,24 @@ public class RecordFieldsRepertoire extends RecordFields {
         return music;
     }
 
-    public String getMusicRollup() {
+    public List<String> getMusicRollup() {
         return musicRollup;
     }
 
-    public String getComposerRollup() {
+    public List<String> getComposerRollup() {
         return composerRollup;
     }
 
-    public Number getLengthRollup() {
+    public List<Number> getLengthRollup() {
         return lengthRollup;
     }
 
-    public String getVoices() {
-        return voices;
+    public List<String> getVoicesRollup() {
+        return voicesRollup;
     }
 
-    public String getSolo() {
-        return solo;
+    public List<String> getSoloRollup() {
+        return soloRollup;
     }
 
     public List<String> getInstrumentRollup() {
@@ -125,15 +125,15 @@ public class RecordFieldsRepertoire extends RecordFields {
         return note;
     }
 
-    public String getScoreRollup() {
+    public List<String> getScoreRollup() {
         return scoreRollup;
     }
 
-    public String getMediaRollup() {
+    public List<String> getMediaRollup() {
         return mediaRollup;
     }
 
-    public String getRecordingRollup() {
+    public List<String> getRecordingRollup() {
         return recordingRollup;
     }
 

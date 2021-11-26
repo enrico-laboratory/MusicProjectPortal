@@ -4,10 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class TableMapDivisi {
+public class TableMapRepertoireAndDivisi extends TableMapObject {
     String id;
-    @SerializedName("Music Projects")
-    List<String> musicProject;
     @SerializedName("Selected")
     boolean selected;
     @SerializedName("Order")
@@ -16,6 +14,24 @@ public class TableMapDivisi {
     String music;
     @SerializedName("Composer")
     String composer;
+    @SerializedName("Voices")
+    String voices;
+    @SerializedName("Solo")
+    String solo;
+    @SerializedName("Instruments")
+    List<String> instruments;
+    @SerializedName("Score Rollup")
+    String score;
+    @SerializedName("Media")
+    String media;
+    @SerializedName("Recording")
+    String recording;
+    @SerializedName("Note")
+    String note;
+    @SerializedName("Music Projects")
+    List<String> musicProject;
+    @SerializedName("Length Rollup")
+    String length;
     @SerializedName("1 - Top Voice")
     String v1;
     @SerializedName("2")
@@ -45,10 +61,6 @@ public class TableMapDivisi {
         return id;
     }
 
-    public List<String> getMusicProject() {
-        return musicProject;
-    }
-
     public boolean isSelected() {
         return selected;
     }
@@ -65,51 +77,39 @@ public class TableMapDivisi {
         return composer;
     }
 
-    public String getV1() {
-        return v1;
+    public String getVoices() {
+        return voices;
     }
 
-    public String getV2() {
-        return v2;
+    public String getSolo() {
+        return solo;
     }
 
-    public String getV3() {
-        return v3;
+    public List<String> getInstruments() {
+        return instruments;
     }
 
-    public String getV4() {
-        return v4;
+    public String getScore() {
+        return score;
     }
 
-    public String getV5() {
-        return v5;
+    public String getMedia() {
+        return media;
     }
 
-    public String getV6() {
-        return v6;
+    public String getRecording() {
+        return recording;
     }
 
-    public String getV7() {
-        return v7;
+    public String getNote() {
+        return note;
     }
 
-    public String getV8() {
-        return v8;
+    public List<String> getMusicProject() {
+        return musicProject;
     }
 
-    public String getV9() {
-        return v9;
-    }
-
-    public String getV10() {
-        return v10;
-    }
-
-    public String getV11() {
-        return v11;
-    }
-
-    public String getV12() {
-        return v12;
+    public String getLength() {
+        return length;
     }
 }

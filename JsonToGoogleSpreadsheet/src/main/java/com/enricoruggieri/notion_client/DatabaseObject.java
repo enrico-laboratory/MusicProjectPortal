@@ -1,4 +1,4 @@
-package com.enricoruggieri.notion_database_parser;
+package com.enricoruggieri.notion_client;
 
 import notion.api.v1.NotionClient;
 import notion.api.v1.model.pages.Page;
@@ -19,7 +19,7 @@ public class DatabaseObject {
         this.databasePages = recordParser.getDatabasePages();
     }
 
-    public List<RecordFields> buildDatabase() {
+    public <T> List<T> buildDatabase() {
         return new ArrayList<>();
     }
 

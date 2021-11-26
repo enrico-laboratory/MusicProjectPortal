@@ -1,4 +1,4 @@
-package com.enricoruggieri.notion_database_parser;
+package com.enricoruggieri.notion_client;
 
 import notion.api.v1.NotionClient;
 import notion.api.v1.model.databases.DatabaseProperty;

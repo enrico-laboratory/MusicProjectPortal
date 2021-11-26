@@ -1,4 +1,4 @@
-package com.enricoruggieri.notion_database_parser;
+package com.enricoruggieri.notion_client;
 
 import java.util.List;
 

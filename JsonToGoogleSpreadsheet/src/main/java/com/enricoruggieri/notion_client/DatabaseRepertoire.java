@@ -1,11 +1,10 @@
-package com.enricoruggieri.notion_database_parser;
+package com.enricoruggieri.notion_client;
 
 import notion.api.v1.NotionClient;
 import notion.api.v1.model.pages.Page;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class DatabaseRepertoire extends DatabaseObject {
 
@@ -17,8 +16,8 @@ public class DatabaseRepertoire extends DatabaseObject {
     }
 
     @Override
-    public List<RecordFields> buildDatabase() {
-        List<RecordFields> database = new ArrayList<>();
+    public List<RecordFieldsRepertoire> buildDatabase() {
+        List<RecordFieldsRepertoire> database = new ArrayList<>();
 
         this.repertoireDatabasePages.forEach(page ->
                 database.add(new RecordFieldsRepertoire(

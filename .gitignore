@@ -5,4 +5,4 @@
 /tokens/
 build/
 resources/
-/com.enricoruggieri.notion_database_parser.RecordParser/
+/com.enricoruggieri.notion_client.RecordParser/

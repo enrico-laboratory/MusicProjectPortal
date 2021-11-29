@@ -11,39 +11,33 @@ import java.util.List;
 
 public class NotionWrapper {
 
-    private final NotionClient client;
-    private final String databaseId;
-    private final List<Page> databasePages;
+    public NotionWrapper(NotionClient client, String databaseId) {}
 
-    public NotionWrapper(NotionClient client, String databaseId) {
-        this.client = client;
-        this.databaseId = databaseId;
-        databasePages = client.queryDatabase(new QueryDatabaseRequest(databaseId)).getResults();
-    }
-
-    public String getTitleValue(Page page, String field) {
-        if (getField(page, field).getTitle().isEmpty() ) {
+    public static String getTitleValue(Page page, String field) {
+        if (getField(page, field) == null) {
+            return "";
+        } else if (getField(page, field).getTitle().isEmpty() ) {
             return "";
         } else {
             return getField(page, field).getTitle().get(0).getPlainText();
         }
     }
 
-    public List<String> getTitleValueRollup(Page page, String field) {
+    public static List<String> getTitleValueRollup(Page page, String field) {
         if (getRollup(page, field) == null) {
             return new ArrayList<>();
         } else if (getRollup(page, field).isEmpty()) {
             return new ArrayList<>();
         } else {
             List<String> list = new ArrayList<>();
-            List<PageProperty.RichText> titlesList = getRollup(page, field).get(0).getTitle();
+            List<PageProperty> titlesList = getRollup(page, field);
             titlesList.forEach(title ->
-                    list.add(title.getPlainText()));
+                    list.add(title.getTitle().get(0).getPlainText()));
             return list;
         }
     }
 
-    public String getRichText(Page page, String field) {
+    public static String getRichText(Page page, String field) {
         if (getField(page, field) == null) {
             return "";
         } else if (getField(page, field).getRichText().isEmpty() ) {
@@ -53,7 +47,7 @@ public class NotionWrapper {
         }
     }
 
-    public List<String> getRichTextRollup(Page page, String field) {
+    public static List<String> getRichTextRollup(Page page, String field) {
         if (getRollup(page, field) == null) {
             return new ArrayList<>();
         } else if (getRollup(page, field).isEmpty() || getRollup(page, field).get(0).getRichText().isEmpty() ) {
@@ -67,7 +61,7 @@ public class NotionWrapper {
         }
     }
 
-    public List<Number> getNumberRollup(Page page, String field) {
+    public static List<Number> getNumberRollup(Page page, String field) {
         if (getRollup(page, field) == null) {
             return new ArrayList<>();
         } else if (getRollup(page, field).isEmpty() ) {
@@ -81,7 +75,7 @@ public class NotionWrapper {
         }
     }
 
-    public List<String> getLinkRollup(Page page, String field) {
+    public static List<String> getLinkRollup(Page page, String field) {
         if (getRollup(page, field) == null) {
             return new ArrayList<>();
         } else if (getRollup(page, field).isEmpty() ) {
@@ -95,7 +89,68 @@ public class NotionWrapper {
         }
     }
 
-    public List<String> getSelectRollup(Page page, String field) {
+    public static String getFormulaString(Page page, String field) {
+        if (getField(page, field) == null) {
+            return "";
+        } else {
+            return getField(page, field).getFormula().getString();
+        }
+    }
+
+    public static List<String> getDate(Page page, String field) {
+        if (getField(page, field) == null) {
+            return getDateList("", "");
+        } else if (getField(page, field).getDate() == null) {
+            return getDateList("", "");
+        } else {
+            String start = getField(page, field).getDate().getStart();
+            String end = getField(page, field).getDate().getEnd();
+            return getDateList(start, end);
+        }
+    }
+    private static List<String> getDateList(String start, String end) {
+        List<String> date = new ArrayList<>();
+        date.add(start);
+        date.add(end);
+        return date;
+    }
+
+    public static String getSelect(Page page, String field) {
+        if (getField(page, field) == null) {
+            return "";
+        } else if (getField(page, field).getSelect() == null) {
+            return "";
+        } else if (getField(page, field).getSelect().getName() == null) {
+            return "";
+        } else {
+            return getField(page, field).getSelect().getName();
+        }
+    }
+    public static String getEmailRollup(Page page, String field) {
+        if (getRollup(page, field) == null) {
+            return "";
+        } else if (getRollup(page, field).isEmpty()) {
+            return "";
+        } else if (getRollup(page, field).get(0).getEmail().isEmpty()) {
+            return "";
+        } else {
+            return getRollup(page, field).get(0).getEmail();
+        }
+    }
+
+    public static String getPhoneRollup(Page page, String field) {
+        if (getRollup(page, field) == null) {
+            return "";
+        } else if (getRollup(page, field).isEmpty()) {
+            return "";
+        } else if (getRollup(page, field).get(0).getPhoneNumber() == null) {
+            return "";
+        } else {
+            return getRollup(page, field).get(0).getPhoneNumber();
+        }
+    }
+
+    public static List<String> getSelectRollup(Page page, String field) {
         if (getRollup(page, field) == null) {
             return new ArrayList<>();
         } else if (getRollup(page, field).isEmpty()) {
@@ -113,7 +168,7 @@ public class NotionWrapper {
         }
     }
 
-    public Number getFormula(Page page, String field) {
+    public static Number getFormulaNumber(Page page, String field) {
         if (getField(page, field) == null) {
             return null;
         } else if (getField(page, field).getFormula().getNumber() == null) {
@@ -123,7 +178,7 @@ public class NotionWrapper {
         }
     }
 
-    public Boolean getCheckbox(Page page, String field) {
+    public static Boolean getCheckbox(Page page, String field) {
         if (getField(page, field) == null) {
             return null;
         } else {
@@ -131,7 +186,7 @@ public class NotionWrapper {
         }
     }
 
-    public List<String> getMultiSelectRollupValue(Page page, String field) {
+    public static List<String> getMultiSelectRollupValue(Page page, String field) {
 
         List<String> multiSelectNames = new ArrayList<>();
 
@@ -148,26 +203,43 @@ public class NotionWrapper {
         return multiSelectNames;
     }
 
-    public String getId(Page page, String musicProjectTableId) {
+    public static List<String> getMultiSelectValue(Page page, String field) {
+
+        List<String> multiSelectNames = new ArrayList<>();
+
+        if (getField(page, field) == null) {
+            return multiSelectNames;
+        } else if (getField(page, field).getMultiSelect() == null){
+            return multiSelectNames;
+        } else if (getField(page, field).getMultiSelect().isEmpty()) {
+            return multiSelectNames;
+        }
+
+        List<DatabaseProperty.MultiSelect.Option> multiSelectRollup = getField(page, field).getMultiSelect();
+        multiSelectRollup.forEach(multiSelectName -> multiSelectNames.add(multiSelectName.getName()));
+        return multiSelectNames;
+    }
+
+    public static String getId(Page page, String musicProjectTableId) {
         return page.getId();
     }
 
-    public List<String> getRelationsValue(Page page, String field) {
-
-        List<PageProperty.PageReference> relations = getField(page, field).getRelation();
-        List<String> relationIds = new ArrayList<>();
-
-        if (relations == null) {
+    public static List<String> getRelationsValue(Page page, String field) {
+        if (getField(page, field) == null) {
+            return new ArrayList<>();
+        } else if (getField(page, field).getRelation() == null) {
+            return new ArrayList<>();
+        } else {
+            List<PageProperty.PageReference> relations = getField(page, field).getRelation();
+            List<String> relationIds = new ArrayList<>();
+            for (PageProperty.PageReference relation : relations) {
+                relationIds.add(relation.getId());
+            }
             return relationIds;
         }
-
-        for (PageProperty.PageReference relation : relations) {
-            relationIds.add(relation.getId());
-        }
-        return relationIds;
     }
 
-    private List<PageProperty> getRollup(Page page, String field) {
+    private static List<PageProperty> getRollup(Page page, String field) {
         try {
             getField(page, field).getRollup();
         } catch (NullPointerException e){
@@ -179,13 +251,11 @@ public class NotionWrapper {
         return getField(page, field).getRollup().getArray();
     }
 
-    private PageProperty getField(Page page, String field) {
+    private static PageProperty getField(Page page, String field) {
+        if (page.getProperties().get(field) == null) {
+            System.out.println(field + " is not a valid field");
+            System.exit(1);
+        }
         return page.getProperties().get(field);
     }
-
-    public List<Page> getDatabasePages() {
-        return databasePages;
-    }
-
-
 }

@@ -4,8 +4,8 @@ plugins {
 }
 
 group 'com.enricoruggieri'
-sourceCompatibility = 1.9
-targetCompatibility = 1.9
+sourceCompatibility = 10
+targetCompatibility = 10
 version '1.0-SNAPSHOT'
 ext.notionSdkVersion = "0.1.19"
 

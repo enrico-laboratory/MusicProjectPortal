@@ -1,5 +1,7 @@
 package com.enricoruggieri.notion_client;
 
+import notion.api.v1.model.pages.Page;
+
 import java.util.List;
 
 public class TableMapRepertoireAndDivisi extends TableMapObject {
@@ -32,61 +34,35 @@ public class TableMapRepertoireAndDivisi extends TableMapObject {
     public final String divisi11;
     public final String divisi12;
 
-    public TableMapRepertoireAndDivisi(String order,
-                                       List<String> music,
-                                       List<String> musicRollup,
-                                       List<String> composerRollup,
-                                       List<Number> lengthRollup,
-                                       List<String> voicesRollup,
-                                       List<String> soloRollup,
-                                       List<String> instrumentRollup,
-                                       String note,
-                                       List<String> scoreRollup,
-                                       List<String> mediaRollup,
-                                       List<String> recordingRollup,
-                                       List<String> musicProject,
-                                       Number length,
-                                       Boolean selected,
-                                       String divisi1,
-                                       String divisi2,
-                                       String divisi3,
-                                       String divisi4,
-                                       String divisi5,
-                                       String divisi6,
-                                       String divisi7,
-                                       String divisi8,
-                                       String divisi9,
-                                       String divisi10,
-                                       String divisi11,
-                                       String divisi12)
-    {
-        this.order = order;
-        this.music = music;
-        this.musicRollup = musicRollup;
-        this.composerRollup = composerRollup;
-        this.lengthRollup = lengthRollup;
-        this.voicesRollup = voicesRollup;
-        this.soloRollup = soloRollup;
-        this.instrumentRollup = instrumentRollup;
-        this.note = note;
-        this.scoreRollup = scoreRollup;
-        this.mediaRollup = mediaRollup;
-        this.recordingRollup = recordingRollup;
-        this.musicProject = musicProject;
-        this.length = length;
-        this.selected = selected;
-        this.divisi1 = divisi1;
-        this.divisi2 = divisi2;
-        this.divisi3 = divisi3;
-        this.divisi4 = divisi4;
-        this.divisi5 = divisi5;
-        this.divisi6 = divisi6;
-        this.divisi7 = divisi7;
-        this.divisi8 = divisi8;
-        this.divisi9 = divisi9;
-        this.divisi10 = divisi10;
-        this.divisi11 = divisi11;
-        this.divisi12 = divisi12;
+    public TableMapRepertoireAndDivisi(Page page) {
+        super(page);
+        this.order = NotionWrapper.getTitleValue(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_ORDER);
+        this.music = NotionWrapper.getRelationsValue(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_MUSIC);
+        this.musicRollup = NotionWrapper.getTitleValueRollup(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_MUSIC_ROLLUP);
+        this.composerRollup = NotionWrapper.getRichTextRollup(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_COMPOSER_ROLLUP);
+        this.lengthRollup = NotionWrapper.getNumberRollup(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_LENGTH_ROLLUP);
+        this.voicesRollup = NotionWrapper.getSelectRollup(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_VOICES_ROLLUP);
+        this.soloRollup = NotionWrapper.getSelectRollup(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_SOLO_ROLLUP);
+        this.instrumentRollup = NotionWrapper.getMultiSelectRollupValue(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_INSTRUMENTS_ROLLUP);
+        this.note = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_NOTE);
+        this.scoreRollup = NotionWrapper.getLinkRollup(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_SCORE_ROLLUP);
+        this.mediaRollup = NotionWrapper.getLinkRollup(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_MEDIA_ROLLUP);
+        this.recordingRollup = NotionWrapper.getLinkRollup(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_RECORDING_ROLLUP);
+        this.musicProject = NotionWrapper.getRelationsValue(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_MUSIC_PROJECT);
+        this.length = NotionWrapper.getFormulaNumber(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_LENGTH);
+        this.selected = NotionWrapper.getCheckbox(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_SELECTED);
+        this.divisi1 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_1_TOP_VOICE);
+        this.divisi2 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_2);
+        this.divisi3 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_3);
+        this.divisi4 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_4);
+        this.divisi5 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_5);
+        this.divisi6 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_6);
+        this.divisi7 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_7);
+        this.divisi8 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_8);
+        this.divisi9 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_9);
+        this.divisi10 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_10);
+        this.divisi11 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_11);
+        this.divisi12 = NotionWrapper.getRichText(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_12);
     }
 
     public String getOrder() {
@@ -195,5 +171,38 @@ public class TableMapRepertoireAndDivisi extends TableMapObject {
 
     public String getDivisi12() {
         return divisi12;
+    }
+
+    @Override
+    public String toString() {
+        return "TableMapRepertoireAndDivisi{" +
+                "order='" + order + '\'' +
+                ", music=" + music +
+                ", musicRollup=" + musicRollup +
+                ", composerRollup=" + composerRollup +
+                ", lengthRollup=" + lengthRollup +
+                ", voicesRollup=" + voicesRollup +
+                ", soloRollup=" + soloRollup +
+                ", instrumentRollup=" + instrumentRollup +
+                ", note='" + note + '\'' +
+                ", scoreRollup=" + scoreRollup +
+                ", mediaRollup=" + mediaRollup +
+                ", recordingRollup=" + recordingRollup +
+                ", musicProject=" + musicProject +
+                ", length=" + length +
+                ", selected=" + selected +
+                ", divisi1='" + divisi1 + '\'' +
+                ", divisi2='" + divisi2 + '\'' +
+                ", divisi3='" + divisi3 + '\'' +
+                ", divisi4='" + divisi4 + '\'' +
+                ", divisi5='" + divisi5 + '\'' +
+                ", divisi6='" + divisi6 + '\'' +
+                ", divisi7='" + divisi7 + '\'' +
+                ", divisi8='" + divisi8 + '\'' +
+                ", divisi9='" + divisi9 + '\'' +
+                ", divisi10='" + divisi10 + '\'' +
+                ", divisi11='" + divisi11 + '\'' +
+                ", divisi12='" + divisi12 + '\'' +
+                '}';
     }
 }

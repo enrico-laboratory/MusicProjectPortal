@@ -1,10 +1,11 @@
-package com.enricoruggieri.notion_client;
+package com.enricoruggieri.to_gsheet;
 
+import com.enricoruggieri.notion_client.NotionWrapper;
 import notion.api.v1.model.pages.Page;
 
 import java.util.List;
 
-public class TableMapCast extends TableMapObject {
+public class TableMapCast {
 
     private final String role;
     private final List<String> singer;
@@ -15,16 +16,23 @@ public class TableMapCast extends TableMapObject {
     private final List<String> musicProject;
     private final String phone;
 
-    public TableMapCast(Page page) {
-        super(page);
-        this.role = NotionWrapper.getTitleValue(page, Config.CAST_TABLE_ROLE);
-        this.singer = NotionWrapper.getRelationsValue(page, Config.CAST_TABLE_SINGER);
-        this.singerRollup = NotionWrapper.getTitleValueRollup(page, Config.CAST_TABLE_SINGER_ROLLUP);
-        this.email = NotionWrapper.getEmailRollup(page, Config.CAST_TABLE_EMAIL);
-        this.status = NotionWrapper.getSelect(page, Config.CAST_TABLE_STATUS);
-        this.note = NotionWrapper.getRichText(page, Config.CAST_TABLE_NOTE);
-        this.musicProject = NotionWrapper.getRelationsValue(page, Config.CAST_TABLE_MUSIC_PROJECT);
-        this.phone = NotionWrapper.getPhoneRollup(page, Config.CAST_TABLE_PHONE);
+    public TableMapCast(String role,
+                        List<String> singer,
+                        List<String> singerRollup,
+                        String email,
+                        String status,
+                        String note,
+                        List<String> musicProject,
+                        String phone)
+    {
+        this.role = role;
+        this.singer = singer;
+        this.singerRollup = singerRollup;
+        this.email = email;
+        this.status = status;
+        this.note = note;
+        this.musicProject = musicProject;
+        this.phone = phone;
     }
 
     public String getRole() {

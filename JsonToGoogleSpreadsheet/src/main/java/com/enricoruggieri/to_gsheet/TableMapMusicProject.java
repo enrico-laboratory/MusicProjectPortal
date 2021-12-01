@@ -1,10 +1,11 @@
-package com.enricoruggieri.notion_client;
+package com.enricoruggieri.to_gsheet;
 
+import com.enricoruggieri.notion_client.NotionWrapper;
 import notion.api.v1.model.pages.Page;
 
 import java.util.List;
 
-public class TableMapMusicProject extends TableMapObject {
+public class TableMapMusicProject {
 
     private final String projectId;
     private final String title;
@@ -18,20 +19,18 @@ public class TableMapMusicProject extends TableMapObject {
     private final List<String> cast;
     private final List<String> repertoire;
 
-    public TableMapMusicProject(Page page)
-    {
-        super(page);
-        this.projectId = NotionWrapper.getId(page, Config.MUSIC_PROJECT_ID);
-        this.title = NotionWrapper.getTitleValue(page, Config.MUSIC_PROJECT_TITLE);
-        this.isCompleted = NotionWrapper.getCheckbox(page, Config.MUSIC_PROJECT_COMPLETED);
-        this.isCancelled = NotionWrapper.getCheckbox(page, Config.MUSIC_PROJECT_CANCELLED);
-        this.choir = NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_CHOIR);
-        this.choirRollup = NotionWrapper.getTitleValueRollup(page, Config.MUSIC_PROJECT_CHOIR_ROLLUP);
-        this.description = NotionWrapper.getRichText(page, Config.MUSIC_PROJECT_DESCRIPTION);
-        this.task = NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_TASK);
-        this.taskRollup = NotionWrapper.getTitleValueRollup(page, Config.MUSIC_PROJECT_TASKS_ROLLUP);
-        this.cast = NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_CAST);
-        this.repertoire = NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_REPERTOIRE);
+    public TableMapMusicProject(String projectId, String title, Boolean isCompleted, Boolean isCancelled, List<String> choir, List<String> choirRollup, String description, List<String> task, List<String> taskRollup, List<String> cast, List<String> repertoire) {
+        this.projectId = projectId;
+        this.title = title;
+        this.isCompleted = isCompleted;
+        this.isCancelled = isCancelled;
+        this.choir = choir;
+        this.choirRollup = choirRollup;
+        this.description = description;
+        this.task = task;
+        this.taskRollup = taskRollup;
+        this.cast = cast;
+        this.repertoire = repertoire;
     }
 
     public String getProjectId() {

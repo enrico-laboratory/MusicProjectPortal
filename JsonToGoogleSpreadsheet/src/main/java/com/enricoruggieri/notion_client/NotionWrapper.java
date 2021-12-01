@@ -252,9 +252,11 @@ public class NotionWrapper {
     }
 
     private static PageProperty getField(Page page, String field) {
-        if (page.getProperties().get(field) == null) {
-            System.out.println(field + " is not a valid field");
-            System.exit(1);
+        try {
+            page.getProperties().get(field);
+        } catch (NullPointerException e ) {
+            System.out.println(field + " not a valid field");
+            e.printStackTrace();
         }
         return page.getProperties().get(field);
     }

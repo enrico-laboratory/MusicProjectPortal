@@ -1,4 +1,4 @@
-package com.enricoruggieri.notion_client;
+package com.enricoruggieri.to_gsheet;
 
 import notion.api.v1.model.pages.Page;
 

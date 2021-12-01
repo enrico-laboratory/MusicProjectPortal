@@ -1,4 +1,4 @@
-package com.enricoruggieri.notion_client;
+package com.enricoruggieri.to_gsheet;
 
 import java.util.Iterator;
 

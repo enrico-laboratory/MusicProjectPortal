@@ -1,4 +1,4 @@
-package com.enricoruggieri.notion_client;
+package com.enricoruggieri.to_gsheet;
 
 import notion.api.v1.NotionClient;
 import notion.api.v1.model.databases.query.filter.CompoundFilter;

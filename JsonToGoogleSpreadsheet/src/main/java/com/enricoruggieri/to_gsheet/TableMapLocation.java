@@ -1,10 +1,11 @@
-package com.enricoruggieri.notion_client;
+package com.enricoruggieri.to_gsheet;
 
+import com.enricoruggieri.notion_client.NotionWrapper;
 import notion.api.v1.model.pages.Page;
 
 import java.util.List;
 
-public class TableMapLocation extends TableMapObject {
+public class TableMapLocation {
 
     private final String location;
     private final String city;
@@ -13,14 +14,19 @@ public class TableMapLocation extends TableMapObject {
     private final List<String> contact;
     private final String email;
 
-    public TableMapLocation(Page page) {
-        super(page);
-        this.location = NotionWrapper.getTitleValue(page, Config.LOCATION_TABLE_LOCATION);
-        this.city = NotionWrapper.getRichText(page, Config.LOCATION_TABLE_CITY);
-        this.address = NotionWrapper.getRichText(page, Config.LOCATION_TABLE_ADDRESS);
-        this.purpose = NotionWrapper.getMultiSelectValue(page, Config.LOCATION_TABLE_PURPOSE);
-        this.contact = NotionWrapper.getRelationsValue(page, Config.LOCATION_TABLE_CONTACT);
-        this.email = NotionWrapper.getEmailRollup(page, Config.LOCATION_TABLE_EMAIL);
+    public TableMapLocation(String location,
+                            String city,
+                            String address,
+                            List<String> purpose,
+                            List<String> contact,
+                            String email)
+    {
+        this.location = location;
+        this.city = city;
+        this.address = address;
+        this.purpose = purpose;
+        this.contact = contact;
+        this.email = email;
     }
 
     public String getLocation() {

@@ -1,10 +1,11 @@
-package com.enricoruggieri.notion_client;
+package com.enricoruggieri.to_gsheet;
 
+import com.enricoruggieri.notion_client.NotionWrapper;
 import notion.api.v1.model.pages.Page;
 
 import java.util.List;
 
-public class TableMapSchedule extends TableMapObject {
+public class TableMapSchedule {
 
     private final String task;
     private final String type;
@@ -16,17 +17,23 @@ public class TableMapSchedule extends TableMapObject {
 //    private final List<String> choirRollup;
     private final List<String> location;
 
-    public TableMapSchedule(Page page) {
-        super(page);
-        this.task = NotionWrapper.getTitleValue(page, Config.SCHEDULE_TABLE_TASK);
-        this.type = NotionWrapper.getSelect(page, Config.SCHEDULE_TABLE_TYPE);
-        this.doDateStart = NotionWrapper.getDate(page, Config.SCHEDULE_TABLE_DO_DATE).get(0);
-        this.doDateEnd = NotionWrapper.getDate(page, Config.SCHEDULE_TABLE_DO_DATE).get(1);
-        this.musicProject = NotionWrapper.getRelationsValue(page, Config.SCHEDULE_TABLE_MUSIC_PROJECT);
-        this.locationRollup = NotionWrapper.getTitleValueRollup(page, Config.SCHEDULE_TABLE_LOCATION_ROLLUP);
-        this.duration = NotionWrapper.getFormulaString(page, Config.SCHEDULE_TABLE_DURATION);
-//        this.choirRollup = NotionWrapper.getTitleValueRollup(page, Config.SCHEDULE_TABLE_CHOIR_ROLLUP);
-        this.location = NotionWrapper.getRelationsValue(page, Config.SCHEDULE_TABLE_LOCATION);
+    public TableMapSchedule(String task,
+                            String type,
+                            String doDateStart,
+                            String doDateEnd,
+                            List<String> musicProject,
+                            List<String> locationRollup,
+                            String duration,
+                            List<String> location)
+    {
+        this.task = task;
+        this.type = type;
+        this.doDateStart = doDateStart;
+        this.doDateEnd = doDateEnd;
+        this.musicProject = musicProject;
+        this.locationRollup = locationRollup;
+        this.duration = duration;
+        this.location = location;
     }
 
     public String getTask() {

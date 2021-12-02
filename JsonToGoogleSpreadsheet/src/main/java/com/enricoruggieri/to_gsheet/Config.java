@@ -17,7 +17,6 @@ public class Config {
     public static final String MUSIC_PROJECT_DESCRIPTION = "Description";
     public static final String MUSIC_PROJECT_TASKS_ROLLUP = "Task Rollup";
 
-
     public static final String REPERTOIRE_AND_DIVISI_TABLE_ID = "aaff3c7cc9fd4c49a9d0cead3d51f75b";
     public static final String REPERTOIRE_AND_DIVISI_DATABASE_ORDER = "Order";
     public static final String REPERTOIRE_AND_DIVISI_DATABASE_MUSIC = "Music";
@@ -74,5 +73,50 @@ public class Config {
     public static final String LOCATION_TABLE_PURPOSE = "Purpose";
     public static final String LOCATION_TABLE_CONTACT = "Contact";
     public static final String LOCATION_TABLE_EMAIL = "Email";
+
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_0 = "Date";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_1 = "Start Time";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_2 = "End Time";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_3 = "Type";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_4 = "Program";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_5 = "Duration";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_6 = "Location";
+    
+    public static final String CAST_VALUE_LIST_COLUMN_0 = "Role";
+    public static final String CAST_VALUE_LIST_COLUMN_1 = "Singer";
+    public static final String CAST_VALUE_LIST_COLUMN_2 = "Email";
+    public static final String CAST_VALUE_LIST_COLUMN_3 = "Note";
+
+    public static final String REPERTOIRE_VALUE_LIST_COLUMN_0 = "Order";
+    public static final String REPERTOIRE_VALUE_LIST_COLUMN_1 = "Title";
+    public static final String REPERTOIRE_VALUE_LIST_COLUMN_2 = "Composer";
+    public static final String REPERTOIRE_VALUE_LIST_COLUMN_3 = "Voicing";
+    public static final String REPERTOIRE_VALUE_LIST_COLUMN_4 = "Solo";
+    public static final String REPERTOIRE_VALUE_LIST_COLUMN_5 = "Instruments";
+    public static final String REPERTOIRE_VALUE_LIST_COLUMN_6 = "Score";
+    public static final String REPERTOIRE_VALUE_LIST_COLUMN_7 = "Midi";
+    public static final String REPERTOIRE_VALUE_LIST_COLUMN_8 = "Recording";
+    public static final String REPERTOIRE_VALUE_LIST_COLUMN_9 = "Note";
+
+    public static final String DIVISI_VALUE_LIST_COLUMN_0 = "Order";
+    public static final String DIVISI_VALUE_LIST_COLUMN_1 = "Title";
+    public static final String DIVISI_VALUE_LIST_COLUMN_2 = "Composer";
+    public static final String DIVISI_VALUE_LIST_COLUMN_3 = "1 - top voice";
+    public static final String DIVISI_VALUE_LIST_COLUMN_4 = "2";
+    public static final String DIVISI_VALUE_LIST_COLUMN_5 = "3";
+    public static final String DIVISI_VALUE_LIST_COLUMN_6 = "4";
+    public static final String DIVISI_VALUE_LIST_COLUMN_7 = "5";
+    public static final String DIVISI_VALUE_LIST_COLUMN_8 = "6";
+    public static final String DIVISI_VALUE_LIST_COLUMN_9 = "7";
+    public static final String DIVISI_VALUE_LIST_COLUMN_10 = "8";
+    public static final String DIVISI_VALUE_LIST_COLUMN_11 = "9";
+    public static final String DIVISI_VALUE_LIST_COLUMN_12 = "10";
+    public static final String DIVISI_VALUE_LIST_COLUMN_13 = "11";
+    public static final String DIVISI_VALUE_LIST_COLUMN_14 = "12";
+
+    public static final String LOCATION_VALUE_LIST_COLUMN_0 = "Location";
+    public static final String LOCATION_VALUE_LIST_COLUMN_1 = "Address";
+    public static final String LOCATION_VALUE_LIST_COLUMN_2 = "City";
+    
 
 }

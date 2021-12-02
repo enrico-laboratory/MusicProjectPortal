@@ -1,6 +1,7 @@
 package com.enricoruggieri.to_gsheet;
 
 import com.enricoruggieri.notion_client.NotionWrapper;
+import com.enricoruggieri.to_gsheet.TableMaps.*;
 import notion.api.v1.model.pages.Page;
 
 import java.util.ArrayList;
@@ -14,8 +15,7 @@ public class MasterTables {
     private final List<TableMapSchedule> tableSchedules;
     private final List<TableMapLocation> tableLocation;
 
-    public MasterTables()
-    {
+    public MasterTables() {
         this.tableMusicProjects = buildTableMusicProject();
         this.tableRepertoireAndDivisi = buildTableRepertoireAndDivisi();
         this.tableCast = buildTableCast();
@@ -27,22 +27,20 @@ public class MasterTables {
         List<Page> query = new Query().getMusicProjectTable();
         List<TableMapMusicProject> table = new ArrayList<>();
         for (Page page : query) {
-
-                table.add(new TableMapMusicProject(
-                        NotionWrapper.getId(page, Config.MUSIC_PROJECT_ID),
-                        NotionWrapper.getTitleValue(page, Config.MUSIC_PROJECT_TITLE),
-                        NotionWrapper.getCheckbox(page, Config.MUSIC_PROJECT_COMPLETED),
-                        NotionWrapper.getCheckbox(page, Config.MUSIC_PROJECT_CANCELLED),
-                        NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_CHOIR),
-                        NotionWrapper.getTitleValueRollup(page, Config.MUSIC_PROJECT_CHOIR_ROLLUP),
-                        NotionWrapper.getRichText(page, Config.MUSIC_PROJECT_DESCRIPTION),
-                        NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_TASK),
-                        NotionWrapper.getTitleValueRollup(page, Config.MUSIC_PROJECT_TASKS_ROLLUP),
-                        NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_CAST),
-                        NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_REPERTOIRE)
-                )
-                );
-
+            table.add(new TableMapMusicProject(
+                            NotionWrapper.getId(page, Config.MUSIC_PROJECT_ID),
+                            NotionWrapper.getTitleValue(page, Config.MUSIC_PROJECT_TITLE),
+                            NotionWrapper.getCheckbox(page, Config.MUSIC_PROJECT_COMPLETED),
+                            NotionWrapper.getCheckbox(page, Config.MUSIC_PROJECT_CANCELLED),
+                            NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_CHOIR),
+                            NotionWrapper.getTitleValueRollup(page, Config.MUSIC_PROJECT_CHOIR_ROLLUP),
+                            NotionWrapper.getRichText(page, Config.MUSIC_PROJECT_DESCRIPTION),
+                            NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_TASK),
+                            NotionWrapper.getTitleValueRollup(page, Config.MUSIC_PROJECT_TASKS_ROLLUP),
+                            NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_CAST),
+                            NotionWrapper.getRelationsValue(page, Config.MUSIC_PROJECT_REPERTOIRE)
+                    )
+            );
         }
         return table;
     }

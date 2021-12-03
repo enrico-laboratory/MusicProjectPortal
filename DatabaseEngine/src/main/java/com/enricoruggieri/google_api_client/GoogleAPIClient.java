@@ -94,7 +94,7 @@ public class GoogleAPIClient {
     public String setColumnDimensionAuto(String spreadsheetId, String sheetName) throws IOException {
 
         Integer sheetId = sheetIdByTitle(spreadsheetId,sheetName);
-        DimensionRange dimensionRange = setDimensionRange(sheetId, 0, 25, "COLUMN");
+        DimensionRange dimensionRange = setDimensionRange(sheetId, 0, 25, "COLUMNS");
 
         List<Request> requests = List.of(
                 new Request()
@@ -113,7 +113,7 @@ public class GoogleAPIClient {
     public String setColumnDimension(String spreadsheetId, String sheetName, Integer startIndex, Integer endIndex, Integer pixelSize) throws IOException {
 
         Integer sheetId = sheetIdByTitle(spreadsheetId,sheetName);
-        DimensionRange dimensionRange = setDimensionRange(sheetId, startIndex, endIndex, "COLUMN");
+        DimensionRange dimensionRange = setDimensionRange(sheetId, startIndex, endIndex, "COLUMNS");
 
         List<Request> requests = List.of(
                 new Request()

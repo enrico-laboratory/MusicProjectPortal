@@ -2,6 +2,9 @@ package com.enricoruggieri.database_engine;
 
 public class Config {
 
+    // TODO Refactor names, add TABLE or replace DATABASE with TABLE
+
+    // NOTION databases field names
     public static final String MUSIC_PROJECT_TABLE_ID = "a290b3f737f242b697959acb9f18283e";
     public static final String MUSIC_PROJECT_ID = "Id";
     public static final String MUSIC_PROJECT_TITLE = "Title";
@@ -72,19 +75,7 @@ public class Config {
     public static final String LOCATION_TABLE_CONTACT = "Contact";
     public static final String LOCATION_TABLE_EMAIL = "Email";
 
-    public static final String SCHEDULE_VALUE_LIST_COLUMN_0 = "Date";
-    public static final String SCHEDULE_VALUE_LIST_COLUMN_1 = "Start Time";
-    public static final String SCHEDULE_VALUE_LIST_COLUMN_2 = "End Time";
-    public static final String SCHEDULE_VALUE_LIST_COLUMN_3 = "Type";
-    public static final String SCHEDULE_VALUE_LIST_COLUMN_4 = "Program";
-    public static final String SCHEDULE_VALUE_LIST_COLUMN_5 = "Duration";
-    public static final String SCHEDULE_VALUE_LIST_COLUMN_6 = "Location";
-    
-    public static final String CAST_VALUE_LIST_COLUMN_0 = "Role";
-    public static final String CAST_VALUE_LIST_COLUMN_1 = "Singer";
-    public static final String CAST_VALUE_LIST_COLUMN_2 = "Email";
-    public static final String CAST_VALUE_LIST_COLUMN_3 = "Note";
-
+    // Database fields names
     public static final String REPERTOIRE_VALUE_LIST_COLUMN_0 = "Order";
     public static final String REPERTOIRE_VALUE_LIST_COLUMN_1 = "Title";
     public static final String REPERTOIRE_VALUE_LIST_COLUMN_2 = "Composer";
@@ -95,6 +86,14 @@ public class Config {
     public static final String REPERTOIRE_VALUE_LIST_COLUMN_7 = "Midi";
     public static final String REPERTOIRE_VALUE_LIST_COLUMN_8 = "Recording";
     public static final String REPERTOIRE_VALUE_LIST_COLUMN_9 = "Note";
+
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_0 = "Date";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_1 = "Start Time";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_2 = "End Time";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_3 = "Type";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_4 = "Program";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_5 = "Duration";
+    public static final String SCHEDULE_VALUE_LIST_COLUMN_6 = "Location";
 
     public static final String DIVISI_VALUE_LIST_COLUMN_0 = "Order";
     public static final String DIVISI_VALUE_LIST_COLUMN_1 = "Title";
@@ -112,9 +111,18 @@ public class Config {
     public static final String DIVISI_VALUE_LIST_COLUMN_13 = "11";
     public static final String DIVISI_VALUE_LIST_COLUMN_14 = "12";
 
+    public static final String CAST_VALUE_LIST_COLUMN_0 = "Role";
+    public static final String CAST_VALUE_LIST_COLUMN_1 = "Singer";
+    public static final String CAST_VALUE_LIST_COLUMN_2 = "Email";
+    public static final String CAST_VALUE_LIST_COLUMN_3 = "Note";
+
     public static final String LOCATION_VALUE_LIST_COLUMN_0 = "Location";
     public static final String LOCATION_VALUE_LIST_COLUMN_1 = "Address";
     public static final String LOCATION_VALUE_LIST_COLUMN_2 = "City";
-    
+
+    // Google Drive and Spreadsheet config
+    public static final String MAIN_FOLDER_ID = "1ggP6aU93RJT1HzgigtzIA6YLeMWAJtKD";
+    public static final String TEST_FOLDER_ID = "1Oqm0pFUGKwF4HXyZbD1Suc9Vr6YpekKz";
+
 
 }

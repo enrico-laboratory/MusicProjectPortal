@@ -2,7 +2,7 @@ package com.enricoruggieri;
 
 import com.enricoruggieri.database_engine.Config;
 import com.enricoruggieri.database_engine.MasterTables;
-import com.enricoruggieri.database_engine.TableMaps.TableMapMusicProject;
+import com.enricoruggieri.database_engine.TableMaps.*;
 import com.enricoruggieri.database_engine.to_google_sheet.*;
 
 import java.io.IOException;
@@ -16,11 +16,11 @@ public class Main {
     public static void main(String[] args) throws GeneralSecurityException, IOException, InterruptedException {
 
         // Build master tables
-        var musicProjectTable = MasterTables.buildTableMusicProject();
-        var repertoireAndDivisiTable = MasterTables.buildTableRepertoireAndDivisi();
-        var scheduleTable = MasterTables.buildTableSchedule();
-        var castTable = MasterTables.buildTableCast();
-        var locationTable = MasterTables.buildTableLocation();
+        List<TableMapMusicProject> musicProjectTable = MasterTables.buildTableMusicProject();
+        List<TableMapRepertoireAndDivisi> repertoireAndDivisiTable = MasterTables.buildTableRepertoireAndDivisi();
+        List<TableMapSchedule> scheduleTable = MasterTables.buildTableSchedule();
+        List<TableMapCast> castTable = MasterTables.buildTableCast();
+        List<TableMapLocation> locationTable = MasterTables.buildTableLocation();
 
         // List ongoing projects
         List<TableMapMusicProject> ongoingMusicProjects = new ArrayList<>();
@@ -31,9 +31,11 @@ public class Main {
                 }
         );
 
+        // Set date for logger
         Calendar calendar = Calendar.getInstance();
         System.out.println(calendar.getTime());
 
+        // For each ongoing project create a new spreadsheet if not existing
         for (TableMapMusicProject project : ongoingMusicProjects) {
 
             SpreadsheetCreator spreadsheet = new SpreadsheetCreator(
@@ -45,7 +47,7 @@ public class Main {
             System.out.println("Deleting default Sheet1...");
             spreadsheet.deleteDefaultSheet();
 
-            List<SheetBuilder> sheetsList = new ArrayList<>();
+            // Instanciate the sheet classes
 
             var sheetRepertoire = new SheetRepertoire(
                     spreadsheet.getSpreadsheetId(),
@@ -93,12 +95,16 @@ public class Main {
                     )
             );
 
+            // Create a list which hold all the sheet instances
+            List<SheetBuilder> sheetsList = new ArrayList<>();
+
             sheetsList.add(sheetRepertoire);
             sheetsList.add(sheetSchedule);
             sheetsList.add(sheetCast);
             sheetsList.add(sheetDivisi);
             sheetsList.add(sheetLocation);
 
+            // Call various methods to upload sheets to spreadsheet and format them
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
             System.out.println("Updating project \"" + project.getTitle() + "\"");
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
@@ -127,8 +133,8 @@ public class Main {
                 sheet.setColumnDimension();
             }
 
+            // Avoid exceeding update per minute Google API limit
             Thread.sleep(61000);
         }
-        System.out.println("hello!");
     }
 }

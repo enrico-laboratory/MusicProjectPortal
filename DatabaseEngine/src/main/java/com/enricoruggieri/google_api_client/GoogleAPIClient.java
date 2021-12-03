@@ -94,13 +94,7 @@ public class GoogleAPIClient {
     public String setColumnDimensionAuto(String spreadsheetId, String sheetName) throws IOException {
 
         Integer sheetId = sheetIdByTitle(spreadsheetId,sheetName);
-
-        DimensionRange dimensionRange = new DimensionRange();
-        dimensionRange
-                .setSheetId(sheetId)
-                .setDimension("COLUMNS")
-                .setStartIndex(0)
-                .setEndIndex(25);
+        DimensionRange dimensionRange = setDimensionRange(sheetId, 0, 25, "COLUMN");
 
         List<Request> requests = List.of(
                 new Request()
@@ -116,23 +110,17 @@ public class GoogleAPIClient {
                         spreadsheetId, batchUpdateSpreadsheetRequest)
                 .execute().getReplies().toString();
     }
-    public String setColumnDimensionTo80(String spreadsheetId, String sheetName, Integer startIndex, Integer endIndex) throws IOException {
+    public String setColumnDimension(String spreadsheetId, String sheetName, Integer startIndex, Integer endIndex, Integer pixelSize) throws IOException {
 
         Integer sheetId = sheetIdByTitle(spreadsheetId,sheetName);
-
-        DimensionRange dimensionRange = new DimensionRange();
-        dimensionRange
-                .setSheetId(sheetId)
-                .setDimension("COLUMNS")
-                .setStartIndex(startIndex)
-                .setEndIndex(endIndex);
+        DimensionRange dimensionRange = setDimensionRange(sheetId, startIndex, endIndex, "COLUMN");
 
         List<Request> requests = List.of(
                 new Request()
                         .setUpdateDimensionProperties(
                                 new UpdateDimensionPropertiesRequest()
                                         .setProperties(new DimensionProperties()
-                                                .setPixelSize(80))
+                                                .setPixelSize(pixelSize))
                                         .setRange(dimensionRange)
                                         .setFields("pixelSize"))
         );
@@ -143,6 +131,14 @@ public class GoogleAPIClient {
         return this.sheetsService.spreadsheets()
                 .batchUpdate(spreadsheetId, batchUpdateSpreadsheetRequest)
                 .execute().getReplies().toString();
+    }
+
+    private DimensionRange setDimensionRange(Integer sheetId, Integer startIndex, Integer endIndex, String dimensionSpan) {
+        return new DimensionRange()
+                .setSheetId(sheetId)
+                .setDimension(dimensionSpan)
+                .setStartIndex(startIndex)
+                .setEndIndex(endIndex);
     }
     public String setTextWrappingClip(String spreadsheetId, String sheetName) throws IOException {
 

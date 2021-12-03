@@ -1,5 +1,6 @@
-package com.enricoruggieri.database_engine;
+package com.enricoruggieri.database_engine.to_google_sheet;
 
+import com.enricoruggieri.database_engine.Config;
 import com.enricoruggieri.database_engine.TableMaps.TableMapCast;
 import com.enricoruggieri.database_engine.TableMaps.TableMapLocation;
 import com.enricoruggieri.database_engine.TableMaps.TableMapRepertoireAndDivisi;
@@ -69,7 +70,9 @@ public class ValueListsBuilder {
             record.getStatus().equals("Confirmed")) {
                 List<Object> recordList = new ArrayList<>();
                 recordList.add(record.getRole());
-                recordList.add(record.getSingerRollup());
+                recordList.add(record.getSingerRollup()
+                        .toString()
+                        .substring(1, record.getSingerRollup().toString().length() -1));
                 recordList.add(record.getEmail());
                 recordList.add(record.getNote());
                 valueList.add(recordList);
@@ -96,14 +99,30 @@ public class ValueListsBuilder {
                     record.getSelected()) {
                 List<Object> recordList = new ArrayList<>();
                 recordList.add(record.getOrder());
-                recordList.add(record.getMusicRollup());
-                recordList.add(record.getComposerRollup());
-                recordList.add(record.getVoicesRollup());
-                recordList.add(record.getSoloRollup());
-                recordList.add(record.getInstrumentRollup());
-                recordList.add(record.getScoreRollup());
-                recordList.add(record.getMediaRollup());
-                recordList.add(record.getRecordingRollup());
+                recordList.add(record.getMusicRollup()
+                        .toString()
+                        .substring(1, record.getMusicRollup().toString().length() -1));
+                recordList.add(record.getComposerRollup()
+                        .toString()
+                        .substring(1, record.getComposerRollup().toString().length() -1));
+                recordList.add(record.getVoicesRollup()
+                        .toString()
+                        .substring(1, record.getVoicesRollup().toString().length() -1));
+                recordList.add(record.getSoloRollup()
+                        .toString()
+                        .substring(1, record.getSoloRollup().toString().length() -1));
+                recordList.add(record.getInstrumentRollup()
+                        .toString()
+                        .substring(1, record.getInstrumentRollup().toString().length() -1));
+                recordList.add(record.getScoreRollup()
+                        .toString()
+                        .substring(1, record.getScoreRollup().toString().length() -1));
+                recordList.add(record.getMediaRollup()
+                        .toString()
+                        .substring(1, record.getMediaRollup().toString().length() -1));
+                recordList.add(record.getRecordingRollup()
+                        .toString()
+                        .substring(1, record.getRecordingRollup().toString().length() -1));
                 recordList.add(record.getNote());
                 valueList.add(recordList);
             }
@@ -135,7 +154,9 @@ public class ValueListsBuilder {
                     record.getSelected()) {
                 List<Object> recordList = new ArrayList<>();
                 recordList.add(record.getOrder());
-                recordList.add(record.getMusicRollup());
+                recordList.add(record.getMusicRollup()
+                        .toString()
+                        .substring(1, record.getMusicRollup().toString().length() -1));
                 recordList.add(record.getDivisi1());
                 recordList.add(record.getDivisi2());
                 recordList.add(record.getDivisi3());

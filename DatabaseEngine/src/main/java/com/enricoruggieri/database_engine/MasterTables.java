@@ -9,21 +9,7 @@ import java.util.List;
 
 public class MasterTables {
 
-    private final List<TableMapMusicProject> tableMusicProjects;
-    private final List<TableMapRepertoireAndDivisi> tableRepertoireAndDivisi;
-    private final List<TableMapCast> tableCast;
-    private final List<TableMapSchedule> tableSchedules;
-    private final List<TableMapLocation> tableLocation;
-
-    public MasterTables() {
-        this.tableMusicProjects = buildTableMusicProject();
-        this.tableRepertoireAndDivisi = buildTableRepertoireAndDivisi();
-        this.tableCast = buildTableCast();
-        this.tableSchedules = buildTableSchedule();
-        this.tableLocation = buildTableLocation();
-    }
-
-    private List<TableMapMusicProject> buildTableMusicProject() {
+    public static List<TableMapMusicProject> buildTableMusicProject() {
         List<Page> query = new Query().getMusicProjectTable();
         List<TableMapMusicProject> table = new ArrayList<>();
         for (Page page : query) {
@@ -45,7 +31,7 @@ public class MasterTables {
         return table;
     }
 
-    private List<TableMapRepertoireAndDivisi> buildTableRepertoireAndDivisi() {
+    public static List<TableMapRepertoireAndDivisi> buildTableRepertoireAndDivisi() {
         List<Page> query = new Query().getRepertoireandDivisiTable();
         List<TableMapRepertoireAndDivisi> table = new ArrayList<>();
         for (Page page : query) {
@@ -83,7 +69,7 @@ public class MasterTables {
         return table;
     }
 
-    private List<TableMapSchedule> buildTableSchedule() {
+    public static List<TableMapSchedule> buildTableSchedule() {
         List<Page> query = new Query().getScheduleTable();
         List<TableMapSchedule> table = new ArrayList<>();
         for (Page page : query) {
@@ -103,7 +89,7 @@ public class MasterTables {
         return table;
     }
 
-    private List<TableMapCast> buildTableCast() {
+    public static List<TableMapCast> buildTableCast() {
         List<Page> query = new Query().getCastTable();
         List<TableMapCast> table = new ArrayList<>();
         for (Page page : query) {
@@ -122,7 +108,7 @@ public class MasterTables {
         return table;
     }
 
-    private List<TableMapLocation> buildTableLocation() {
+    public static List<TableMapLocation> buildTableLocation() {
         List<Page> query = new Query().getLocationTable();
         List<TableMapLocation> table = new ArrayList<>();
         for (Page page : query) {
@@ -139,23 +125,4 @@ public class MasterTables {
         return table;
     }
 
-    public List<TableMapMusicProject> getTableMusicProjects() {
-        return tableMusicProjects;
-    }
-
-    public List<TableMapRepertoireAndDivisi> getTableRepertoireAndDivisi() {
-        return tableRepertoireAndDivisi;
-    }
-
-    public List<TableMapCast> getTableCast() {
-        return tableCast;
-    }
-
-    public List<TableMapSchedule> getTableSchedules() {
-        return tableSchedules;
-    }
-
-    public List<TableMapLocation> getTableLocation() {
-        return tableLocation;
-    }
 }

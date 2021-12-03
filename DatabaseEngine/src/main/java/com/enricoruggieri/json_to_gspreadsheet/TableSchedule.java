@@ -70,7 +70,7 @@ public class TableSchedule extends TableObject<TableSchedule.TableTasksMap> {
                     } catch (NullPointerException e) {
                         recordList.add("");
                     }
-                    recordList.add(record.type);
+                    recordList.add(record.getType());
                     recordList.add(record.task); // Program
                     recordList.add(record.duration);
                     recordList.add(record.location);
@@ -117,6 +117,10 @@ public class TableSchedule extends TableObject<TableSchedule.TableTasksMap> {
                         ", end='" + end + '\'' +
                         '}';
             }
+        }
+
+        public String getType() {
+            return type;
         }
 
         @Override

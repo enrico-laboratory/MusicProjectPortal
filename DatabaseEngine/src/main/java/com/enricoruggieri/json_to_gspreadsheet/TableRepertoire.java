@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TableRepertoire extends TableObject<TableRepertoire.TableRepertoireMap> {
@@ -28,38 +27,45 @@ public class TableRepertoire extends TableObject<TableRepertoire.TableRepertoire
 
     @Override
     public List<List<Object>> initValuesList() {
-        List<List<Object>> values = new ArrayList<>();
-        final String[] repertoireColumnTitles = new String[]{
-                "Order",
-                "Title",
-                "Composer",
-                "Voices",
-                "Solo",
-                "Instruments",
-                "Score",
-                "Midi",
-                "Recording",
-                "Note"
-        };
-        values.add(Arrays.asList(repertoireColumnTitles));
-        for (TableRepertoireMap record : getTableObject()) {
-            List<Object> recordList = new ArrayList<>();
-            recordList.add(record.musicProject);
-            recordList.add(record.order);
-            recordList.add(record.music);
-            recordList.add(record.composer);
-            recordList.add(record.voices);
-            recordList.add(record.solo);
-            recordList.add(record.instruments
-                    .toString().substring(1,record.instruments.toString().length() - 1));
-            recordList.add(record.score);
-            recordList.add(record.media);
-            recordList.add(record.recording);
-            recordList.add(record.note);
-            values.add(recordList);
-        }
-        return values;
+        return null;
     }
+
+    //    @Override
+//    public List<List<Object>> initValuesList() {
+//        NotionClient client = new NotionClient(System.getenv("NOTION_TOKEN"));
+//        List<TableMapRepertoireAndDivisi> databaseRepertoire = new TableObjectRepertoireAndDivisi(client).buildTable();
+//        List<List<Object>> values = new ArrayList<>();
+//        final String[] repertoireColumnTitles = new String[]{
+//                "Order",
+//                "Title",
+//                "Composer",
+//                "Voices",
+//                "Solo",
+//                "Instruments",
+//                "Score",
+//                "Midi",
+//                "Recording",
+//                "Note"
+//        };
+//        values.add(Arrays.asList(repertoireColumnTitles));
+//        for (TableMapRepertoireAndDivisi record : databaseRepertoire) {
+//            List<Object> recordList = new ArrayList<>();
+//            recordList.add(record.getMusicProject().toString());
+//            recordList.add(record.getOrder());
+//            recordList.add(record.getMusicRollup());
+//            recordList.add(record.getComposerRollup());
+//            recordList.add(record.getVoicesRollup());
+//            recordList.add(record.getSoloRollup());
+//            recordList.add(record.getInstrumentRollup()
+//                    .toString().substring(1,record.getInstrumentRollup().toString().length() - 1));
+//            recordList.add(record.getScoreRollup());
+//            recordList.add(record.getMediaRollup());
+//            recordList.add(record.getRecordingRollup());
+//            recordList.add(record.getNote());
+//            values.add(recordList);
+//        }
+//        return values;
+//    }
 
     protected static class TableRepertoireMap {
         String id;

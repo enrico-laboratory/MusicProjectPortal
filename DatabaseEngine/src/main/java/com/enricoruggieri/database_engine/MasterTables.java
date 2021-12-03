@@ -1,7 +1,7 @@
-package com.enricoruggieri.to_gsheet;
+package com.enricoruggieri.database_engine;
 
 import com.enricoruggieri.notion_client.NotionWrapper;
-import com.enricoruggieri.to_gsheet.TableMaps.*;
+import com.enricoruggieri.database_engine.TableMaps.*;
 import notion.api.v1.model.pages.Page;
 
 import java.util.ArrayList;

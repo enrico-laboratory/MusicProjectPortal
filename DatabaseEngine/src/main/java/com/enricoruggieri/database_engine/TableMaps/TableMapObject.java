@@ -1,4 +1,4 @@
-package com.enricoruggieri.to_gsheet.TableMaps;
+package com.enricoruggieri.database_engine.TableMaps;
 
 import notion.api.v1.model.pages.Page;
 

@@ -1,15 +1,13 @@
-package com.enricoruggieri.to_gsheet;
+package com.enricoruggieri.database_engine;
 
-import com.enricoruggieri.json_to_gspreadsheet.TableCast;
-import com.enricoruggieri.to_gsheet.TableMaps.TableMapCast;
-import com.enricoruggieri.to_gsheet.TableMaps.TableMapLocation;
-import com.enricoruggieri.to_gsheet.TableMaps.TableMapRepertoireAndDivisi;
-import com.enricoruggieri.to_gsheet.TableMaps.TableMapSchedule;
+import com.enricoruggieri.database_engine.TableMaps.TableMapCast;
+import com.enricoruggieri.database_engine.TableMaps.TableMapLocation;
+import com.enricoruggieri.database_engine.TableMaps.TableMapRepertoireAndDivisi;
+import com.enricoruggieri.database_engine.TableMaps.TableMapSchedule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class ValueListsBuilder {
 

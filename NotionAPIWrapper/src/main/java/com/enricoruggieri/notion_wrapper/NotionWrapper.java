@@ -1,10 +1,9 @@
-package com.enricoruggieri.notion_client;
+package com.enricoruggieri.notion_wrapper;
 
 import notion.api.v1.NotionClient;
 import notion.api.v1.model.databases.DatabaseProperty;
 import notion.api.v1.model.pages.Page;
 import notion.api.v1.model.pages.PageProperty;
-import notion.api.v1.request.databases.QueryDatabaseRequest;
 
 import java.util.ArrayList;
 import java.util.List;

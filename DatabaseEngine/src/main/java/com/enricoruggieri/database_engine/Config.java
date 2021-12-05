@@ -19,7 +19,7 @@ public class Config {
     public static final String MUSIC_PROJECT_TASKS_ROLLUP = "Task Rollup";
 
     public static final String REPERTOIRE_AND_DIVISI_TABLE_ID = "aaff3c7cc9fd4c49a9d0cead3d51f75b";
-    public static final String REPERTOIRE_AND_DIVISI_DATABASE_ORDER = "Order";
+    public static final String REPERTOIRE_AND_DIVISI_ORDER = "Order";
     public static final String REPERTOIRE_AND_DIVISI_DATABASE_MUSIC = "Music";
     public static final String REPERTOIRE_AND_DIVISI_DATABASE_MUSIC_ROLLUP = "Music Rollup";
     public static final String REPERTOIRE_AND_DIVISI_DATABASE_COMPOSER_ROLLUP = "Composer Rollup";
@@ -75,7 +75,7 @@ public class Config {
     public static final String LOCATION_TABLE_CONTACT = "Contact";
     public static final String LOCATION_TABLE_EMAIL = "Email";
 
-    // Database fields names
+    // GoogleSheet field names
     public static final String REPERTOIRE_VALUE_LIST_COLUMN_0 = "Order";
     public static final String REPERTOIRE_VALUE_LIST_COLUMN_1 = "Title";
     public static final String REPERTOIRE_VALUE_LIST_COLUMN_2 = "Composer";
@@ -120,7 +120,7 @@ public class Config {
     public static final String LOCATION_VALUE_LIST_COLUMN_1 = "Address";
     public static final String LOCATION_VALUE_LIST_COLUMN_2 = "City";
 
-    // Google Drive and Spreadsheet config
+    // Google Drive config
     public static final String MAIN_FOLDER_ID = "1ggP6aU93RJT1HzgigtzIA6YLeMWAJtKD";
     public static final String TEST_FOLDER_ID = "1Oqm0pFUGKwF4HXyZbD1Suc9Vr6YpekKz";
 

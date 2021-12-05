@@ -10,11 +10,11 @@ import notion.api.v1.request.databases.QueryDatabaseRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Query {
+public class NotionWrapperQueries {
 
     private final NotionClient client;
 
-    public Query() {
+    public NotionWrapperQueries() {
         if (System.getenv("NOTION_TOKEN").isEmpty()) {
             System.out.println("Token not found!");
         }

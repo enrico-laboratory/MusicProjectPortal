@@ -27,12 +27,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class GoogleAPIClient {
+public class GoogleAPIWrapper {
 
     private final Drive driveService = new GoogleAPIService().createDriveService();
     private final Sheets sheetsService = new GoogleAPIService().createSheetsService();
 
-    public GoogleAPIClient() throws GeneralSecurityException, IOException {
+    public GoogleAPIWrapper() throws GeneralSecurityException, IOException {
     }
 
     public String clearSheet(String spreadsheetId, String sheetName) throws IOException {

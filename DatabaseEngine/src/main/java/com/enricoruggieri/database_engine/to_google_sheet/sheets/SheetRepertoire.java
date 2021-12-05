@@ -1,6 +1,6 @@
-package com.enricoruggieri.database_engine.to_google_sheet;
+package com.enricoruggieri.database_engine.to_google_sheet.sheets;
 
-import com.enricoruggieri.google_api_client.GoogleAPIClient;
+import com.enricoruggieri.google_api_client.GoogleAPIWrapper;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -18,7 +18,7 @@ public class SheetRepertoire extends SheetBuilder {
     }
 
     public String setColumnDimension() throws IOException {
-        GoogleAPIClient service = getService();
+        GoogleAPIWrapper service = getService();
         Integer endIndex = 9;
         Integer startIndex = 6;
         Integer pixelSize = 80;

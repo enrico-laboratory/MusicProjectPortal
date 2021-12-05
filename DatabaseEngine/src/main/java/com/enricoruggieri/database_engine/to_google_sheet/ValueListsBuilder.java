@@ -49,7 +49,7 @@ public class ValueListsBuilder {
         return valueList;
     }
 
-    private static String[] columnTitleSchedule() {
+    private static Object[] columnTitleSchedule() {
         return new String[]{
                 Config.SCHEDULE_VALUE_LIST_COLUMN_0,
                 Config.SCHEDULE_VALUE_LIST_COLUMN_1,
@@ -81,7 +81,7 @@ public class ValueListsBuilder {
         return valueList;
     }
 
-    private static String[] columnTitleCast() {
+    private static Object[] columnTitleCast() {
         return new String[]{
                 Config.CAST_VALUE_LIST_COLUMN_0,
                 Config.CAST_VALUE_LIST_COLUMN_1,
@@ -130,7 +130,7 @@ public class ValueListsBuilder {
         return valueList;
     }
 
-    private static String[] columnTitleRepertoire() {
+    private static Object[] columnTitleRepertoire() {
         return new String[]{
                 Config.REPERTOIRE_VALUE_LIST_COLUMN_0,
                 Config.REPERTOIRE_VALUE_LIST_COLUMN_1,
@@ -175,7 +175,7 @@ public class ValueListsBuilder {
         return valueList;
     }
 
-    private static String[] columnTitleDivisi() {
+    private static Object[] columnTitleDivisi() {
         return new String[]{
                 Config.DIVISI_VALUE_LIST_COLUMN_0,
                 Config.DIVISI_VALUE_LIST_COLUMN_1,
@@ -218,7 +218,7 @@ public class ValueListsBuilder {
         return valueList;
     }
 
-    private static String[] columnTitleLocation() {
+    private static Object[] columnTitleLocation() {
         return new String[]{
                 Config.LOCATION_VALUE_LIST_COLUMN_0,
                 Config.LOCATION_VALUE_LIST_COLUMN_1,

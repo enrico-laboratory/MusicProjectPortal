@@ -1,7 +1,8 @@
-package com.enricoruggieri.database_engine;
+package com.enricoruggieri.database_engine.TableMaps;
 
-import com.enricoruggieri.notion_client.NotionWrapper;
-import com.enricoruggieri.database_engine.TableMaps.*;
+import com.enricoruggieri.database_engine.Config;
+import com.enricoruggieri.database_engine.NotionWrapperQueries;
+import com.enricoruggieri.notion_wrapper.NotionWrapper;
 import notion.api.v1.model.pages.Page;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 public class MasterTables {
 
     public static List<TableMapMusicProject> buildTableMusicProject() {
-        List<Page> query = new Query().getMusicProjectTable();
+        List<Page> query = new NotionWrapperQueries().getMusicProjectTable();
         List<TableMapMusicProject> table = new ArrayList<>();
         for (Page page : query) {
             table.add(new TableMapMusicProject(
@@ -32,11 +33,11 @@ public class MasterTables {
     }
 
     public static List<TableMapRepertoireAndDivisi> buildTableRepertoireAndDivisi() {
-        List<Page> query = new Query().getRepertoireandDivisiTable();
+        List<Page> query = new NotionWrapperQueries().getRepertoireandDivisiTable();
         List<TableMapRepertoireAndDivisi> table = new ArrayList<>();
         for (Page page : query) {
             table.add(new TableMapRepertoireAndDivisi(
-                            NotionWrapper.getTitleValue(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_ORDER),
+                            NotionWrapper.getTitleValue(page, Config.REPERTOIRE_AND_DIVISI_ORDER),
                             NotionWrapper.getRelationsValue(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_MUSIC),
                             NotionWrapper.getTitleValueRollup(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_MUSIC_ROLLUP),
                             NotionWrapper.getRichTextRollup(page, Config.REPERTOIRE_AND_DIVISI_DATABASE_COMPOSER_ROLLUP),
@@ -70,7 +71,7 @@ public class MasterTables {
     }
 
     public static List<TableMapSchedule> buildTableSchedule() {
-        List<Page> query = new Query().getScheduleTable();
+        List<Page> query = new NotionWrapperQueries().getScheduleTable();
         List<TableMapSchedule> table = new ArrayList<>();
         for (Page page : query) {
             table.add(new TableMapSchedule(
@@ -90,7 +91,7 @@ public class MasterTables {
     }
 
     public static List<TableMapCast> buildTableCast() {
-        List<Page> query = new Query().getCastTable();
+        List<Page> query = new NotionWrapperQueries().getCastTable();
         List<TableMapCast> table = new ArrayList<>();
         for (Page page : query) {
             table.add(new TableMapCast(
@@ -109,7 +110,7 @@ public class MasterTables {
     }
 
     public static List<TableMapLocation> buildTableLocation() {
-        List<Page> query = new Query().getLocationTable();
+        List<Page> query = new NotionWrapperQueries().getLocationTable();
         List<TableMapLocation> table = new ArrayList<>();
         for (Page page : query) {
             table.add(new TableMapLocation(

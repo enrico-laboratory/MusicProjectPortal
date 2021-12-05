@@ -1,11 +1,9 @@
-package com.enricoruggieri.database_engine.to_google_sheet;
+package com.enricoruggieri.database_engine.to_google_sheet.sheets;
 
-import com.enricoruggieri.google_api_client.GoogleAPIClient;
-import com.enricoruggieri.json_to_gspreadsheet.TableObject;
+import com.enricoruggieri.google_api_client.GoogleAPIWrapper;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SheetBuilder {
@@ -13,7 +11,7 @@ public abstract class SheetBuilder {
     private final String spreadsheetId;
     private final String projectId;
     private final String sheetName;
-    private final GoogleAPIClient service;
+    private final GoogleAPIWrapper service;
     private final Integer dimensionIndex;
     private final List<List<Object>> valuesList;
 
@@ -26,7 +24,7 @@ public abstract class SheetBuilder {
         this.spreadsheetId = spreadSheetId;
         this.projectId = projectId;
         this.sheetName = sheetName;
-        this.service = new GoogleAPIClient();
+        this.service = new GoogleAPIWrapper();
         this.dimensionIndex = dimensionIndex;
         this.valuesList = valuesList;
     }
@@ -75,7 +73,7 @@ public abstract class SheetBuilder {
         return sheetName;
     }
 
-    public GoogleAPIClient getService() {
+    public GoogleAPIWrapper getService() {
         return service;
     }
 

@@ -1,33 +1,36 @@
 plugins {
     id 'java'
-    id 'idea'
 }
 
 group 'com.enricoruggieri'
 sourceCompatibility = 10
 targetCompatibility = 10
 version '1.0-SNAPSHOT'
-ext.notionSdkVersion = "0.1.19"
-
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation project(':GoogleAPIWrapper')
-    implementation project(':NotionAPIWrapper')
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation 'com.google.api-client:google-api-client:1.30.4'
     implementation 'com.google.oauth-client:google-oauth-client-jetty:1.32.1'
     implementation 'com.google.apis:google-api-services-sheets:v4-rev581-1.25.0'
     implementation 'com.google.apis:google-api-services-drive:v3-rev110-1.23.0'
-    implementation 'com.google.code.gson:gson:2.8.8'
-    implementation("com.github.seratch:notion-sdk-jvm-core:${notionSdkVersion}")
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 
 }
+
+//tasks.register('uberJar', Jar) {
+//    archiveClassifier = 'uber'
+//
+//    from sourceSets.main.output
+//
+//    dependsOn configurations.runtimeClasspath
+//    from {
+//        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+//    }
+//}
 
 test {
     useJUnitPlatform()

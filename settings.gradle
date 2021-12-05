@@ -1,4 +1,6 @@
 rootProject.name = 'MusicProjectPortal'
 include 'DatabaseEngine'
-
+include 'GoogleAPIWrapper'
+include 'NotionAPIWrapper'
+include 'JsonMapper'
 

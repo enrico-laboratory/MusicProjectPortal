@@ -1,4 +1,4 @@
-package com.enricoruggieri.database_engine.to_google_sheet;
+package com.enricoruggieri.database_engine.to_google_sheet.sheets;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;

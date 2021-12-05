@@ -1,9 +1,10 @@
 package com.enricoruggieri;
 
 import com.enricoruggieri.database_engine.Config;
-import com.enricoruggieri.database_engine.MasterTables;
+import com.enricoruggieri.database_engine.TableMaps.MasterTables;
 import com.enricoruggieri.database_engine.TableMaps.*;
 import com.enricoruggieri.database_engine.to_google_sheet.*;
+import com.enricoruggieri.database_engine.to_google_sheet.sheets.*;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -133,7 +134,8 @@ public class Main {
                 sheet.setColumnDimension();
             }
 
-            // Avoid exceeding update per minute Google API limit
+            // Avoid exceeding update per minute Google API limit, sleep for 61 seconds
+            System.out.println("Taking a break...");
             Thread.sleep(61000);
         }
     }

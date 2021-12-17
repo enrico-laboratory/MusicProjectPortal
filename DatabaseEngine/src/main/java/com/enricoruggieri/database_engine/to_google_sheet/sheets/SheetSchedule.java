@@ -21,8 +21,4 @@ public class SheetSchedule extends SheetBuilder {
         return "no changes";
     }
 
-    @Override
-    public String sortSheet() {
-        return "no changes";
-    }
 }

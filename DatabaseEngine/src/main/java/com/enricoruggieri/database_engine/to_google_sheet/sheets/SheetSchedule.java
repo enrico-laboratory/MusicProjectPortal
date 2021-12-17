@@ -20,4 +20,9 @@ public class SheetSchedule extends SheetBuilder {
     public String setColumnDimension() {
         return "no changes";
     }
+
+    @Override
+    public String sortSheet() {
+        return "no changes";
+    }
 }

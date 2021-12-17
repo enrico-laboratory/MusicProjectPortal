@@ -122,7 +122,7 @@ public class Config {
 
     // Google Drive config
     public static final String MAIN_FOLDER_ID = "1ggP6aU93RJT1HzgigtzIA6YLeMWAJtKD";
-    public static final String TEST_FOLDER_ID = "1Oqm0pFUGKwF4HXyZbD1Suc9Vr6YpekKz";
+    public static final String TEST_FOLDER_ID = "1txa9YdUZAWS9__Y_gjpH3pSydeGmenI6";
 
 
 }

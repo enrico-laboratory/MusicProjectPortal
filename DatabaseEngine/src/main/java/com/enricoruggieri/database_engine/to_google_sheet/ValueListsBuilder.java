@@ -39,9 +39,7 @@ public class ValueListsBuilder {
                 if (record.getLocationRollup().toString().length() < 1) {
                     recordList.add("");
                 } else {
-                    recordList.add(record.getLocationRollup()
-                            .toString()
-                            .substring(1, record.getLocationRollup().toString().length() - 1));
+                    recordList.add(toStringAndRemoveSquareBrackets(record.getLocationRollup()));
                 }
                 valueList.add(recordList);
             }
@@ -70,9 +68,7 @@ public class ValueListsBuilder {
             record.getStatus().equals("Confirmed")) {
                 List<Object> recordList = new ArrayList<>();
                 recordList.add(record.getRole());
-                recordList.add(record.getSingerRollup()
-                        .toString()
-                        .substring(1, record.getSingerRollup().toString().length() -1));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getSingerRollup()));
                 recordList.add(record.getEmail());
                 recordList.add(record.getNote());
                 valueList.add(recordList);
@@ -99,30 +95,14 @@ public class ValueListsBuilder {
                     record.getSelected()) {
                 List<Object> recordList = new ArrayList<>();
                 recordList.add(record.getOrder());
-                recordList.add(record.getMusicRollup()
-                        .toString()
-                        .substring(1, record.getMusicRollup().toString().length() -1));
-                recordList.add(record.getComposerRollup()
-                        .toString()
-                        .substring(1, record.getComposerRollup().toString().length() -1));
-                recordList.add(record.getVoicesRollup()
-                        .toString()
-                        .substring(1, record.getVoicesRollup().toString().length() -1));
-                recordList.add(record.getSoloRollup()
-                        .toString()
-                        .substring(1, record.getSoloRollup().toString().length() -1));
-                recordList.add(record.getInstrumentRollup()
-                        .toString()
-                        .substring(1, record.getInstrumentRollup().toString().length() -1));
-                recordList.add(record.getScoreRollup()
-                        .toString()
-                        .substring(1, record.getScoreRollup().toString().length() -1));
-                recordList.add(record.getMediaRollup()
-                        .toString()
-                        .substring(1, record.getMediaRollup().toString().length() -1));
-                recordList.add(record.getRecordingRollup()
-                        .toString()
-                        .substring(1, record.getRecordingRollup().toString().length() -1));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getMusicRollup()));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getComposerRollup()));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getVoicesRollup()));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getSoloRollup()));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getInstrumentRollup()));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getScoreRollup()));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getMediaRollup()));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getRecordingRollup()));
                 recordList.add(record.getNote());
                 valueList.add(recordList);
             }
@@ -154,9 +134,8 @@ public class ValueListsBuilder {
                     record.getSelected()) {
                 List<Object> recordList = new ArrayList<>();
                 recordList.add(record.getOrder());
-                recordList.add(record.getMusicRollup()
-                        .toString()
-                        .substring(1, record.getMusicRollup().toString().length() -1));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getMusicRollup()));
+                recordList.add(toStringAndRemoveSquareBrackets(record.getComposerRollup()));
                 recordList.add(record.getDivisi1());
                 recordList.add(record.getDivisi2());
                 recordList.add(record.getDivisi3());
@@ -224,5 +203,11 @@ public class ValueListsBuilder {
                 Config.LOCATION_VALUE_LIST_COLUMN_1,
                 Config.LOCATION_VALUE_LIST_COLUMN_2,
         };
+    }
+
+    private static String toStringAndRemoveSquareBrackets(List<String> list) {
+        return list
+                .toString()
+                .substring(1, list.toString().length() -1);
     }
 }

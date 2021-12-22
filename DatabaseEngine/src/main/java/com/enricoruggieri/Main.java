@@ -44,12 +44,7 @@ public class Main {
                     project.getProjectId(),
                     Config.TEST_FOLDER_ID);
 
-            System.out.println();
-            System.out.println("Deleting default Sheet1...");
-            spreadsheet.deleteDefaultSheet();
-
             // Instanciate the sheet classes
-
             var sheetRepertoire = new SheetRepertoire(
                     spreadsheet.getSpreadsheetId(),
                     spreadsheet.getProjectId(),
@@ -133,6 +128,10 @@ public class Main {
                 System.out.println("Setting columns dimension...");
                 sheet.setColumnDimension();
             }
+
+            System.out.println();
+            System.out.println("Deleting default Sheet1...");
+            spreadsheet.deleteDefaultSheet();
 
             // Avoid exceeding update per minute Google API limit, sleep for 61 seconds
             System.out.println("Taking a break...");

@@ -134,6 +134,7 @@ public class Main {
             spreadsheet.deleteDefaultSheet();
 
             // Avoid exceeding update per minute Google API limit, sleep for 61 seconds
+            System.out.println();
             System.out.println("Taking a break...");
             Thread.sleep(61000);
         }

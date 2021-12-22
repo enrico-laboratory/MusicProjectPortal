@@ -21,8 +21,4 @@ public class SheetCast extends SheetBuilder {
 
     }
 
-    @Override
-    public String sortSheet() {
-        return "no changes";
-    }
 }
